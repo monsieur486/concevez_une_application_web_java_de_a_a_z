@@ -1,5 +1,6 @@
 <html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Pay My Buddy</title>
     <div th:replace="~{fragments/header :: header-css}"></div>
@@ -16,11 +17,13 @@
                     <strong>We make your money move. Easy!!!</strong>
                 </p>
             </div>
-            <div class="mainBtn">
-                <a class="btn btn-primary btn-lg" href="/register" role="button">Register</a>
-            </div>
-            <div class="mainBtn">
-                <a class="btn btn-primary btn-lg" href="/login" role="button">Connection</a>
+            <div class="messageUserNotRegistered" sec:authorize="isAnonymous()">
+                <div class="mainBtn">
+                    <a class="btn btn-primary btn-lg" href="/register" role="button">Register</a>
+                </div>
+                <div class="mainBtn">
+                    <a class="btn btn-primary btn-lg" href="/login" role="button">Connection</a>
+                </div>
             </div>
         </div>
     </div>
