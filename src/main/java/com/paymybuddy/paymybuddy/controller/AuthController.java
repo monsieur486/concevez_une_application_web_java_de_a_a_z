@@ -20,22 +20,6 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @GetMapping("/")
-    public String home(){
-        return "index";
-    }
-
-    @GetMapping("/users")
-    public String getusers(){
-        return "users";
-    }
-
-    @GetMapping("/login")
-    public String loginForm() {
-        return "login";
-    }
-
-    // handler method to handle user registration request
     @GetMapping("register")
     public String showRegistrationForm(Model model){
         UserDto user = new UserDto();
@@ -57,11 +41,5 @@ public class AuthController {
         }
         userService.saveUser(user);
         return "redirect:/register?success";
-    }
-
-    @GetMapping("/superuser")
-    public String createSuperUser() {
-        userService.createSuperUser();
-        return "redirect:/";
     }
 }

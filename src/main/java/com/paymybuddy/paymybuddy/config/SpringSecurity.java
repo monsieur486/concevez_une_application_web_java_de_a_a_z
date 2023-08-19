@@ -30,16 +30,24 @@ public class SpringSecurity {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(authorize ->
-                        authorize.requestMatchers("/register/**").permitAll()
-                                .requestMatchers("/").permitAll()
-                                .requestMatchers("/superuser").permitAll()
-                                .requestMatchers("/users").hasRole("USER")
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/").permitAll()
+                        .requestMatchers("favicon.ico").permitAll()
+                        .requestMatchers("/login/**").permitAll()
+                        .requestMatchers("/css/**").permitAll()
+                        .requestMatchers("/js/**").permitAll()
+                        .requestMatchers("/img/**").permitAll()
+                        .requestMatchers("/register/**").permitAll()
+                        .requestMatchers("/contact/**").permitAll()
+                        .requestMatchers("/superuser/**").permitAll()
+                        .requestMatchers("/transfer/**").hasRole("USER")
+                        .requestMatchers("/profile/**").hasRole("USER")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/users")
+                                .defaultSuccessUrl("/")
                                 .permitAll()
                 ).logout(
                         logout -> logout
