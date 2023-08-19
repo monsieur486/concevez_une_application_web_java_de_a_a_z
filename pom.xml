@@ -39,6 +39,7 @@
 		<maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
 		<maven-project-info-reports-plugin.version>3.4.5</maven-project-info-reports-plugin.version>
 		<maven-jxr-plugin.version>3.3.0</maven-jxr-plugin.version>
+		<spring-dotenv.version>4.0.0</spring-dotenv.version>
 	</properties>
 
 	<dependencies>
@@ -91,6 +92,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>me.paulschwarz</groupId>
+			<artifactId>spring-dotenv</artifactId>
+			<version>${spring-dotenv.version}</version>
 		</dependency>
 	</dependencies>
 

@@ -13,4 +13,6 @@ public interface UserService {
     User findByEmail(String email);
 
     List<UserDto> findAllUsers();
+
+    void createSuperUser();
 }

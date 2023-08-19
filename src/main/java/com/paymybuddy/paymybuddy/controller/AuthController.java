@@ -58,4 +58,10 @@ public class AuthController {
         userService.saveUser(user);
         return "redirect:/register?success";
     }
+
+    @GetMapping("/superuser")
+    public String createSuperUser() {
+        userService.createSuperUser();
+        return "redirect:/";
+    }
 }

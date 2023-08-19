@@ -10,7 +10,9 @@ public class PaymybuddyApplication {
 
 	@Generated
 	public static void main(String[] args) {
+
 		SpringApplication.run(PaymybuddyApplication.class, args);
+
 	}
 
 }

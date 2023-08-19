@@ -6,6 +6,8 @@ import com.paymybuddy.paymybuddy.entity.User;
 import com.paymybuddy.paymybuddy.repository.RoleRepository;
 import com.paymybuddy.paymybuddy.repository.UserRepository;
 import com.paymybuddy.paymybuddy.service.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +15,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
+
+    @Value("${SUPERUSER_NAME}")
+    private String superUserName;
+
+    @Value("${SUPERUSER_PASSWORD}")
+    private String superUserPassword;
 
     public UserServiceImpl(UserRepository userRepository,
                            RoleRepository roleRepository,
@@ -35,7 +44,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         Role role = roleRepository.findByName("ROLE_USER");
         if(role == null){
-            role = checkRoleExist();
+            role = checkRoleExist("ROLE_USER");
         }
         user.setRoles(List.of(role));
         userRepository.save(user);
@@ -49,8 +58,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> findAllUsers() {
         List<User> users = userRepository.findAll();
-        return users.stream().map(user -> convertEntityToDto(user))
-                .collect(Collectors.toList());
+        return users.stream().map(this::convertEntityToDto).collect(Collectors.toList());
     }
 
     private UserDto convertEntityToDto(User user){
@@ -62,9 +70,30 @@ public class UserServiceImpl implements UserService {
         return userDto;
     }
 
-    private Role checkRoleExist() {
+    private Role checkRoleExist(String roleName) {
         Role role = new Role();
-        role.setName("ROLE_USER");
+        role.setName(roleName);
         return roleRepository.save(role);
+    }
+
+    public void saveSuperUser() {
+        User superUser = new User();
+        superUser.setName("Super User");
+        superUser.setEmail(superUserName);
+        superUser.setPassword(passwordEncoder.encode(superUserPassword));
+        Role role = roleRepository.findByName("ROLE_ADMIN");
+        if(role == null){
+            role = checkRoleExist("ROLE_ADMIN");
+        }
+        superUser.setRoles(List.of(role));
+        userRepository.save(superUser);
+        log.warn("Super user created !!!");
+    }
+
+    public void createSuperUser() {
+        User superUser = findByEmail(superUserName);
+        if(superUser == null){
+            saveSuperUser();
+        }
     }
 }
