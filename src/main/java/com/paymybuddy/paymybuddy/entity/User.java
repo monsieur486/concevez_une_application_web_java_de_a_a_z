@@ -32,11 +32,19 @@ public class User
     @Column(nullable=false)
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH})
     @JoinTable(
-            name="users_roles",
-            joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
-            inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
+            name= "users_roles",
+            joinColumns={@JoinColumn(name= "USER_ID", referencedColumnName= "ID")},
+            inverseJoinColumns={@JoinColumn(name= "ROLE_ID", referencedColumnName= "ID")})
     private List<Role> roles = new ArrayList<>();
+
+    private Integer balance=0;
+
+    private String iban;
 
 }
