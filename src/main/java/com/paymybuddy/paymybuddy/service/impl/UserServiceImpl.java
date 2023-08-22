@@ -1,6 +1,5 @@
 package com.paymybuddy.paymybuddy.service.impl;
 
-import com.paymybuddy.paymybuddy.PaymybuddyApplication;
 import com.paymybuddy.paymybuddy.dto.UserDto;
 import com.paymybuddy.paymybuddy.entity.Role;
 import com.paymybuddy.paymybuddy.entity.User;

@@ -38,13 +38,13 @@ public class AuthController {
         if (existing != null) {
             result.rejectValue("email", "", "There is already an account registered with that email");
         }
-        if (!StringUtil.containsAcapitalLetter(user.getPassword())) {
+        if (!StringUtil.containsCapitalLetter(user.getPassword())) {
             result.rejectValue(PASSWORD, "", "Password must contain at least one capital letter");
         }
-        if (!StringUtil.containsAlowercase(user.getPassword())) {
+        if (!StringUtil.containsLowercaseLetter(user.getPassword())) {
             result.rejectValue(PASSWORD, "", "Password must contain at least one lower case letter");
         }
-        if (!StringUtil.containsANumber(user.getPassword())) {
+        if (!StringUtil.containsNumber(user.getPassword())) {
             result.rejectValue(PASSWORD, "", "Password must contain at least one number");
         }
         if (result.hasErrors()) {

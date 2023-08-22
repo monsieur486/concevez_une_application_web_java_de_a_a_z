@@ -5,15 +5,15 @@ public class StringUtil {
     private StringUtil() {
     }
 
-    public static boolean containsAcapitalLetter(String string) {
+    public static boolean containsCapitalLetter(String string) {
         return string.matches(".*[A-Z].*");
     }
 
-    public static boolean containsAlowercase(String string) {
+    public static boolean containsLowercaseLetter(String string) {
         return string.matches(".*[a-z].*");
     }
 
-    public static boolean containsANumber(String string) {
+    public static boolean containsNumber(String string) {
         return string.matches(".*\\d.*");
     }
 }
