@@ -19,6 +19,7 @@ public class AuthController {
     private final UserService userService;
 
     private static final String PASSWORD = "password";
+    private static final String ACTIVE_PAGE = "register";
 
     public AuthController(UserService userService) {
         this.userService = userService;
@@ -28,9 +29,8 @@ public class AuthController {
     public String showRegistrationForm(Model model){
         UserDto user = new UserDto();
         model.addAttribute("user", user);
-        String activePage = "register";
-        model.addAttribute("activePage", activePage);
-        return "register";
+        model.addAttribute("activePage", ACTIVE_PAGE);
+        return ACTIVE_PAGE;
     }
 
     @PostMapping("/register/save")
@@ -38,8 +38,7 @@ public class AuthController {
                                BindingResult result,
                                Model model){
         User existing = userService.findByEmail(user.getEmail());
-        String activePage = "register";
-        model.addAttribute("activePage", activePage);
+        model.addAttribute("activePage", ACTIVE_PAGE);
         if (existing != null) {
             result.rejectValue(
                     "email",
@@ -84,9 +83,9 @@ public class AuthController {
 
         if (result.hasErrors()) {
             model.addAttribute("user", user);
-            return "register";
+            return ACTIVE_PAGE;
         }
         userService.saveUser(user);
-        return "redirect:/register?success";
+        return "redirect:/" + ACTIVE_PAGE + "?success";
     }
 }

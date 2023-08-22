@@ -65,6 +65,7 @@ public class SpringSecurity {
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
                                 .deleteCookies("JSESSIONID")
+                                .logoutSuccessUrl("/")
                 ).rememberMe(
                         rememberMe -> rememberMe
                                 .tokenValiditySeconds(ApplicationConfiguration.REMEMBER_ME_VALIDITY_SECONDS)
