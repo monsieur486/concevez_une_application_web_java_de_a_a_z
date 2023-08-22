@@ -28,6 +28,8 @@ public class AuthController {
     public String showRegistrationForm(Model model){
         UserDto user = new UserDto();
         model.addAttribute("user", user);
+        String activePage = "register";
+        model.addAttribute("activePage", activePage);
         return "register";
     }
 
@@ -36,6 +38,8 @@ public class AuthController {
                                BindingResult result,
                                Model model){
         User existing = userService.findByEmail(user.getEmail());
+        String activePage = "register";
+        model.addAttribute("activePage", activePage);
         if (existing != null) {
             result.rejectValue(
                     "email",
