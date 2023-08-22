@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -41,12 +43,24 @@ public class User implements Serializable {
             CascadeType.REFRESH})
     @JoinTable(
             name= "users_roles",
-            joinColumns={@JoinColumn(name= "USER_ID", referencedColumnName= "ID")},
-            inverseJoinColumns={@JoinColumn(name= "ROLE_ID", referencedColumnName= "ID")})
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<Role> roles = new ArrayList<>();
 
     private Integer balance=0;
 
     private String iban;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH})
+    @JoinTable(
+            name = "connections",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "connection_id", referencedColumnName = "id")})
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<User> connections = new ArrayList<>();
 
 }

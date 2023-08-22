@@ -46,11 +46,13 @@ public class UserServiceImpl implements UserService {
             role = checkRoleExist("ROLE_USER");
         }
         user.setRoles(List.of(role));
+        log.info("User created : {}", userDto.getEmail());
         userRepository.save(user);
     }
 
     @Override
     public User findByEmail(String email) {
+        log.debug("Find user by email : {}", email);
         return userRepository.findByEmail(email);
     }
 
@@ -66,6 +68,7 @@ public class UserServiceImpl implements UserService {
     private Role checkRoleExist(String roleName) {
         Role role = new Role();
         role.setName(roleName);
+        log.debug("Role {} created", roleName);
         return roleRepository.save(role);
     }
 

@@ -1,6 +1,5 @@
 package com.paymybuddy.paymybuddy.config;
 
-import com.paymybuddy.paymybuddy.ApplicationConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

@@ -13,7 +13,7 @@ public class StringUtil {
         return string.matches(".*[a-z].*");
     }
 
-    public static boolean containsNumber(String string) {
+    public static boolean containsDigit(String string) {
         return string.matches(".*\\d.*");
     }
 }

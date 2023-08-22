@@ -1,5 +1,6 @@
 package com.paymybuddy.paymybuddy.controller;
 
+import com.paymybuddy.paymybuddy.config.ApplicationConfiguration;
 import com.paymybuddy.paymybuddy.dto.UserDto;
 import com.paymybuddy.paymybuddy.entity.User;
 import com.paymybuddy.paymybuddy.service.UserService;
@@ -36,17 +37,47 @@ public class AuthController {
                                Model model){
         User existing = userService.findByEmail(user.getEmail());
         if (existing != null) {
-            result.rejectValue("email", "", "There is already an account registered with that email");
+            result.rejectValue(
+                    "email",
+                    "",
+                    "There is already an account registered with that email");
         }
-        if (!StringUtil.containsCapitalLetter(user.getPassword())) {
-            result.rejectValue(PASSWORD, "", "Password must contain at least one capital letter");
+
+        if (ApplicationConfiguration.PASSWORD_MUST_CONTAIN_UPPERCASE
+                && (!StringUtil.containsCapitalLetter(user.getPassword()))) {
+            result.rejectValue(
+                    PASSWORD,
+                    "",
+                    "Password must contain at least one capital letter");
         }
-        if (!StringUtil.containsLowercaseLetter(user.getPassword())) {
-            result.rejectValue(PASSWORD, "", "Password must contain at least one lower case letter");
+
+        if (ApplicationConfiguration.PASSWORD_MUST_CONTAIN_LOWERCASE
+                && (!StringUtil.containsLowercaseLetter(user.getPassword()))) {
+            result.rejectValue(
+                    PASSWORD,
+                    "",
+                    "Password must contain at least one lower case letter");
         }
-        if (!StringUtil.containsNumber(user.getPassword())) {
-            result.rejectValue(PASSWORD, "", "Password must contain at least one number");
+
+        if (ApplicationConfiguration.PASSWORD_MUST_CONTAIN_DIGIT
+                && (!StringUtil.containsDigit(user.getPassword()))) {
+            result.rejectValue(
+                    PASSWORD,
+                    "",
+                    "Password must contain at least one digit");
         }
+
+        if (user.getPassword().length() < ApplicationConfiguration.MINIMUM_PASSWORD_LENGTH) {
+            result.rejectValue(
+                    PASSWORD,
+                    "",
+                    "Password must be at least "
+                            + ApplicationConfiguration.MINIMUM_PASSWORD_LENGTH
+                            + " characters long and less than "
+                            + ApplicationConfiguration.MAXIMUM_PASSWORD_LENGTH
+                            + " characters long");
+        }
+
         if (result.hasErrors()) {
             model.addAttribute("user", user);
             return "register";
