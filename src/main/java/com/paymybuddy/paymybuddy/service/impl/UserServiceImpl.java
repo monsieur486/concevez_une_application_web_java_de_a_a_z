@@ -7,7 +7,6 @@ import com.paymybuddy.paymybuddy.repository.RoleRepository;
 import com.paymybuddy.paymybuddy.repository.UserRepository;
 import com.paymybuddy.paymybuddy.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +19,6 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
-
-    @Value("${SUPERUSER_NAME}")
-    private String superUserName;
-
-    @Value("${SUPERUSER_PASSWORD}")
-    private String superUserPassword;
 
     public UserServiceImpl(UserRepository userRepository,
                            RoleRepository roleRepository,
@@ -72,24 +65,12 @@ public class UserServiceImpl implements UserService {
         return roleRepository.save(role);
     }
 
-    public void saveSuperUser() {
-        User superUser = new User();
-        superUser.setName("Super User");
-        superUser.setEmail(superUserName);
-        superUser.setPassword(passwordEncoder.encode(superUserPassword));
-        Role role = roleRepository.findByName("ROLE_ADMIN");
-        if(role == null){
-            role = checkRoleExist("ROLE_ADMIN");
-        }
-        superUser.setRoles(List.of(role));
-        userRepository.save(superUser);
-        log.warn("Super user created !!!");
+    public void updateUser(UserDto userDto) {
+        User user = userRepository.findByEmail(userDto.getEmail());
+        user.setName(userDto.getFirstName() + " " + userDto.getLastName());
+        user.setEmail(userDto.getEmail());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        userRepository.save(user);
     }
 
-    public void createSuperUser() {
-        User superUser = findByEmail(superUserName);
-        if(superUser == null){
-            saveSuperUser();
-        }
-    }
 }

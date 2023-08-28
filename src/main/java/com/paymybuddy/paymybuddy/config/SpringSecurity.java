@@ -50,10 +50,8 @@ public class SpringSecurity {
                         .requestMatchers("/img/**").permitAll()
                         .requestMatchers("/register/**").permitAll()
                         .requestMatchers("/contact/**").permitAll()
-                        .requestMatchers("/superuser/**").permitAll()
                         .requestMatchers("/transfer/**").hasRole("USER")
                         .requestMatchers("/profile/**").hasRole("USER")
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
