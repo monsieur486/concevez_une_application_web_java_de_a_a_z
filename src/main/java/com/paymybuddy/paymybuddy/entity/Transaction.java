@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter
@@ -14,8 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "connections")
-public class Connection implements Serializable {
+@Table(name = "transactions")
+public class Transaction implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -26,17 +25,12 @@ public class Connection implements Serializable {
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private User userConnected;
+    private Connection connection;
 
     @Column(nullable = false)
-    private String nickname;
+    private String description;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "connection_id")
-    @ToString.Exclude
-    private List<Transaction> transactions;
+    @Column(nullable = false)
+    private Integer amount;
+
 }

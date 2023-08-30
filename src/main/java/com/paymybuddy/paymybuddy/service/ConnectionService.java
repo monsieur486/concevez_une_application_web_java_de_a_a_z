@@ -4,21 +4,52 @@ import com.paymybuddy.paymybuddy.entity.Connection;
 
 import java.util.List;
 
-public interface ConnectionService {
-    void addConnection(String email, String emailConnection);
+public class ConnectionService {
 
-    void deleteConnection(String email, String emailConnection);
+    private final ConnectionService connectionService;
+    private final UserService userService;
 
-    void deleteAllConnectionsByUserConnection(String email);
+    public ConnectionService(ConnectionService connectionService, UserService userService) {
+        this.connectionService = connectionService;
+        this.userService = userService;
+    }
 
-    Boolean existByConnection(Connection connection);
+    public void addConnection(String email, String emailConnection) {
+        Connection connection = new Connection();
+        connection.setUser(userService.findByEmail(email));
+        connection.setUserConnected(userService.findByEmail(emailConnection));
+        connectionService.addConnection(email, emailConnection);
+    }
 
-    List<Connection> findAllByUser(String email);
+    public void deleteConnection(String email, String emailConnection) {
+        connectionService.deleteConnection(email, emailConnection);
+    }
 
-    Connection findByUserAndUserConnection(String email, String emailConnection);
+    public void deleteAllConnectionsByUserConnection(String email) {
+        connectionService.deleteAllConnectionsByUserConnection(email);
+    }
 
-    Connection saveConnection(Connection connection);
+    public Boolean existByConnection(Connection connection) {
+        return connectionService.existByConnection(connection);
+    }
 
-    Connection findById(Long id);
+    public List<Connection> findAllByUser(String email) {
+        return connectionService.findAllByUser(email);
+    }
 
+    public Connection findByUserAndUserConnection(String email, String emailConnection) {
+        return connectionService.findByUserAndUserConnection(email, emailConnection);
+    }
+
+    public Connection saveConnection(Connection connection) {
+        if (Boolean.TRUE.equals(connectionService.existByConnection(connection))) {
+            return null;
+        } else {
+            return connectionService.saveConnection(connection);
+        }
+    }
+
+    public Connection findById(Long id) {
+        return connectionService.findById(id);
+    }
 }
