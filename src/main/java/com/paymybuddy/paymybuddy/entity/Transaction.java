@@ -5,12 +5,14 @@ import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Date;
 
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "transactions")
@@ -32,5 +34,8 @@ public class Transaction implements Serializable {
 
     @Column(nullable = false)
     private Integer amount;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
 
 }
