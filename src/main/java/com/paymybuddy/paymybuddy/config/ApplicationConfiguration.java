@@ -18,7 +18,6 @@ public class ApplicationConfiguration {
 
     // fee configuration
     public static final double FEE_PERCENTAGE = 0.005;
-    public static final String CURRENCY_SYMBOL = "€";
     public static final int MINIMUM_AMOUNT_TRANSACTION = 5;
     public static final int MAXIMUM_AMOUNT_TRANSACTION = 1000;
     public static final int MINIMUM_AMOUNT_PAYMENT = 15;

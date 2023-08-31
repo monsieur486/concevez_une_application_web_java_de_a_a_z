@@ -40,6 +40,7 @@
 		<maven-project-info-reports-plugin.version>3.4.5</maven-project-info-reports-plugin.version>
 		<maven-jxr-plugin.version>3.3.0</maven-jxr-plugin.version>
 		<spring-dotenv.version>4.0.0</spring-dotenv.version>
+		<javafaker.version>1.0.2</javafaker.version>
 	</properties>
 
 	<dependencies>
@@ -97,6 +98,11 @@
 			<groupId>me.paulschwarz</groupId>
 			<artifactId>spring-dotenv</artifactId>
 			<version>${spring-dotenv.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>${javafaker.version}</version>
 		</dependency>
 	</dependencies>
 
