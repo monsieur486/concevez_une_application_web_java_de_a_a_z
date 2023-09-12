@@ -28,12 +28,18 @@ public class UserService {
             log.error("User already exist : {}", userDto.getEmail());
             return;
         }
-        log.info("User created : {}", userDto.getEmail());
         userRepository.save(user);
+        log.info("User created : {}", userDto.getEmail());
     }
 
     public User findByEmail(String email) {
         log.debug("Find user by email : {}", email);
         return userRepository.findByEmail(email);
+    }
+
+    public void setBalance(User user, Integer balance) {
+        user.setBalance(balance);
+        userRepository.save(user);
+        log.info("User balance updated : {}", user);
     }
 }

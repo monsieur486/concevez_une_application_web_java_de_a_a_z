@@ -34,8 +34,4 @@ public class Transaction implements Serializable {
 
     @Column(nullable = false)
     private Integer amount;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
 }

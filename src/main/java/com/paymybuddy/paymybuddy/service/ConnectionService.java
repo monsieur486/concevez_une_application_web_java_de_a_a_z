@@ -16,11 +16,12 @@ public class ConnectionService {
         this.connectionRepository = connectionRepository;
     }
 
-    public void addConnection(User user, User friend, String nickname) {
+    public Connection addConnection(User user, User friend, String nickname) {
         Connection connection = new Connection();
         connection.setUser(user);
         connection.setUserConnected(friend);
         connection.setNickname(nickname);
-        connectionRepository.save(connection);
+        log.info("Connection added : {}", connection);
+        return connectionRepository.save(connection);
     }
 }
