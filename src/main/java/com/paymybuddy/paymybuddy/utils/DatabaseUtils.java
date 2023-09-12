@@ -25,13 +25,13 @@ public class DatabaseUtils {
 
     private void addUsers() {
         User userDemo = userService.findByEmail("demo@user.fr");
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i < 11; i++) {
             UserDto userDto = new UserDto();
             userDto.setEmail(FakeData.getEmail());
             userDto.setPassword("Mdp12345");
             userService.saveUser(userDto);
             User friend = userService.findByEmail(userDto.getEmail());
-            connectionService.addConnection(userDemo, friend, "Nickname" + i+1);
+            connectionService.addConnection(userDemo, friend, "Nickname" + i);
         }
     }
 
