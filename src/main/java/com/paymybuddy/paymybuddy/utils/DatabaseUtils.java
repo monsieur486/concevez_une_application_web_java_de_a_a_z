@@ -30,7 +30,7 @@ public class DatabaseUtils {
 
     private void addUsers() {
         User userDemo = userService.findByEmail("demo@user.fr");
-        userService.setBalance(userDemo, 1000);
+        userService.setBalance(userDemo, 45000);
         int count = 0;
         for (int i = 1; i < 11; i++) {
             UserDto userDto = new UserDto();
