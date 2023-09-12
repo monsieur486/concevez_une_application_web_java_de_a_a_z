@@ -22,7 +22,7 @@ public class ProfilePageController {
         User user = userService.findByEmail(principal.getName());
         String activePage = "profile";
         model.addAttribute("activePage", activePage);
-        model.addAttribute("user",user);
+        model.addAttribute("user", user);
         return "profile";
     }
 }

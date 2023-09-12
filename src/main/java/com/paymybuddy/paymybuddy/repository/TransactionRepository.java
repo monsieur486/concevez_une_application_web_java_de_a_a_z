@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
-        Transaction findById(long id);
+    Transaction findById(long id);
 
-        List<Transaction> findAllByConnection_UserOrderByIdDesc(User user, Pageable pageable);
+    List<Transaction> findAllByConnection_UserOrderByIdDesc(User user, Pageable pageable);
 }

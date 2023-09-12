@@ -14,7 +14,8 @@
             <div class="card">
                 <div th:if="${param.success}">
                     <div class="alert alert-info">You've successfully registered
-                        to our app!</div>
+                        to our app!
+                    </div>
                 </div>
                 <div class="card-header">
                     <h2 class="text-center">Registration</h2>
@@ -31,7 +32,7 @@
                                    th:field="*{email}"
                                    type="email"
                             />
-                            <p th:errors="*{email}" class="text-danger"
+                            <p class="text-danger" th:errors="*{email}"
                                th:if="${#fields.hasErrors('email')}">
                             </p>
                         </div>
@@ -44,7 +45,7 @@
                                    th:field="*{password}"
                                    type="password"
                             />
-                            <p th:errors="*{password}" class="text-danger"
+                            <p class="text-danger" th:errors="*{password}"
                                th:if="${#fields.hasErrors('password')}">
                             </p>
                         </div>

@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Date;
 
 @Getter
 @Setter

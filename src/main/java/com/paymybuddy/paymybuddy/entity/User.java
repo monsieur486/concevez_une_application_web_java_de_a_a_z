@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -23,13 +23,13 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable=false, unique=true)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String password;
 
-    private Integer balance=0;
+    private Integer balance = 0;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")

@@ -16,17 +16,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AuthController {
 
-    private final UserService userService;
-
     private static final String PASSWORD = "password";
     private static final String ACTIVE_PAGE = "register";
+    private final UserService userService;
 
     public AuthController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping("register")
-    public String showRegistrationForm(Model model){
+    public String showRegistrationForm(Model model) {
         UserDto user = new UserDto();
         model.addAttribute("user", user);
         model.addAttribute("activePage", ACTIVE_PAGE);
@@ -36,7 +35,7 @@ public class AuthController {
     @PostMapping("/register/save")
     public String registration(@Valid @ModelAttribute("user") UserDto user,
                                BindingResult result,
-                               Model model){
+                               Model model) {
         User existing = userService.findByEmail(user.getEmail());
         model.addAttribute("activePage", ACTIVE_PAGE);
         if (existing != null) {

@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name="messages")
+@Table(name = "messages")
 public class Message implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -22,9 +22,9 @@ public class Message implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String email;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String content;
 }

@@ -21,12 +21,10 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SpringSecurity {
 
+    private final UserDetailsService userDetailsService;
+    private final DataSource dataSource;
     @Value("${REMEMBER_ME_SECRET}")
     private String rememberMeSecret;
-
-    private final UserDetailsService userDetailsService;
-
-    private final DataSource dataSource;
 
     public SpringSecurity(UserDetailsService userDetailsService, DataSource dataSource) {
         this.userDetailsService = userDetailsService;
@@ -34,7 +32,7 @@ public class SpringSecurity {
     }
 
     @Bean
-    public static PasswordEncoder passwordEncoder(){
+    public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -83,7 +81,7 @@ public class SpringSecurity {
 
     @Bean
     public PersistentTokenRepository tokenRepository() {
-        JdbcTokenRepositoryImpl jdbcTokenRepositoryImpl=new JdbcTokenRepositoryImpl();
+        JdbcTokenRepositoryImpl jdbcTokenRepositoryImpl = new JdbcTokenRepositoryImpl();
         jdbcTokenRepositoryImpl.setDataSource(dataSource);
         return jdbcTokenRepositoryImpl;
     }
