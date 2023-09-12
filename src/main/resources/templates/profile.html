@@ -11,6 +11,13 @@
 <div class="container">
     <div class="starter-template">
         <h1>Profile</h1>
+        <div class="container" th:if="${user}">
+            <p th:text="${user.getEmail()}"></p>
+            <p th:text="${user.getBalance()}"></p>
+        </div>
+        <div class="container" th:unless="${user}">
+            <p>Not logged in</p>
+        </div>
     </div>
 </div>
 <div th:replace="~{fragments/footer :: footer}"></div>

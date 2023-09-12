@@ -1,7 +1,6 @@
 package com.paymybuddy.paymybuddy.repository;
 
-
-import com.paymybuddy.paymybuddy.entity.Connection;
+import com.paymybuddy.paymybuddy.entity.Transaction;
 import com.paymybuddy.paymybuddy.entity.User;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,10 +9,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ConnectionRepository extends JpaRepository<Connection, Long> {
+public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
-    List<Connection> findByUserOrderByNickname(User user, Pageable pageable);
+        Transaction findById(long id);
 
-    Connection findById(long id);
-
+        List<Transaction> findAllByConnection_UserOrderByIdDesc(User user, Pageable pageable);
 }

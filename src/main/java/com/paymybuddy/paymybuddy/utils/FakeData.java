@@ -4,8 +4,7 @@ import com.github.javafaker.Faker;
 
 public class FakeData {
 
-    private FakeData() {
-    }
+    private FakeData() {}
 
     public static String getEmail() {
         Faker faker = new Faker();

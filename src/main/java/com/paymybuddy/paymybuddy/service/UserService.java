@@ -24,7 +24,7 @@ public class UserService {
         User user = new User();
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        if (userRepository.findByEmail(userDto.getEmail()) != null) {
+        if (Boolean.TRUE.equals(userRepository.existsByEmail(userDto.getEmail()))) {
             log.error("User already exist : {}", userDto.getEmail());
             return;
         }
