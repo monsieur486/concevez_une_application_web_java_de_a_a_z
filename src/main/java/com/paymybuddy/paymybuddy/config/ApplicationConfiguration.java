@@ -12,7 +12,7 @@ public class ApplicationConfiguration {
     public static final boolean PASSWORD_MUST_CONTAIN_UPPERCASE = true;
     // fee configuration
     public static final double FEE_PERCENTAGE = 0.005;
-    public static final int MINIMUM_AMOUNT_TRANSACTION = 5;
+    public static final int MINIMUM_AMOUNT_TRANSACTION = 1;
     public static final int MAXIMUM_AMOUNT_TRANSACTION = 1000;
     public static final int MINIMUM_AMOUNT_PAYMENT = 15;
     public static final int MAXIMUM_AMOUNT_PAYMENT = 1000;
