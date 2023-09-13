@@ -1,7 +1,9 @@
 package com.paymybuddy.paymybuddy.controller;
 
+import com.paymybuddy.paymybuddy.entity.Connection;
 import com.paymybuddy.paymybuddy.entity.Transaction;
 import com.paymybuddy.paymybuddy.entity.User;
+import com.paymybuddy.paymybuddy.service.ConnectionService;
 import com.paymybuddy.paymybuddy.service.TransactionService;
 import com.paymybuddy.paymybuddy.service.UserService;
 import org.springframework.data.domain.Page;
@@ -22,9 +24,12 @@ public class TransferPageController {
 
     private final TransactionService transactionService;
 
-    public TransferPageController(UserService userService, TransactionService transactionService) {
+    private final ConnectionService connectionService;
+
+    public TransferPageController(UserService userService, TransactionService transactionService, ConnectionService connectionService) {
         this.userService = userService;
         this.transactionService = transactionService;
+        this.connectionService = connectionService;
     }
 
     @RequestMapping(value = "/transfer")
@@ -38,10 +43,15 @@ public class TransferPageController {
         int pageSize = size.orElse(5);
 
         String activePage = "transfer";
-        User user = userService.findByEmail(principal.getName());
-        Page<Transaction> transactions = transactionService.getTransactions(user, currentPage - 1, pageSize);
         model.addAttribute("activePage", activePage);
+
+        User user = userService.findByEmail(principal.getName());
         model.addAttribute("user", user);
+
+        List<Connection> connections = connectionService.getConnections(user);
+        model.addAttribute("connections", connections);
+
+        Page<Transaction> transactions = transactionService.getTransactions(user, currentPage - 1, pageSize);
         model.addAttribute("transactions", transactions);
         int totalPages = transactions.getTotalPages();
         if (totalPages > 0) {
@@ -52,6 +62,7 @@ public class TransferPageController {
             model.addAttribute("currentPage", currentPage);
             model.addAttribute("totalPage", totalPages);
         }
+
         return "transfer";
     }
 }

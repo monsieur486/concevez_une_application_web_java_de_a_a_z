@@ -12,8 +12,7 @@ import java.util.List;
 @Repository
 public interface ConnectionRepository extends JpaRepository<Connection, Long> {
 
-    List<Connection> findByUserOrderByNickname(User user, Pageable pageable);
+    List<Connection> findByUserOrderByNickname(User user);
 
     Connection findById(long id);
-
 }
