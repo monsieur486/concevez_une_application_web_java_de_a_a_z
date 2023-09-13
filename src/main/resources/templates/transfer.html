@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
 <head>
     <title>PMD Transfer</title>
     <div th:replace="~{fragments/header :: header-css}"></div>
@@ -10,9 +13,45 @@
 <div th:replace="~{fragments/menu :: menu}"></div>
 <div class="container">
     <div class="starter-template">
-        <h1>Transfer</h1>
-        <p th:text="${user.getEmail()}"></p>
-        <p>Solde: <span th:text="${user.getBalance()}"></span> €</p>
+        <h3>My Transactions</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr class="transactionTabTitle">
+                <th>Connections</th>
+                <th>Description</th>
+                <th>Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="transaction: ${transactions}">
+                <td th:text="${transaction.connection.nickname}"/>
+                <td th:text="${transaction.description}"/>
+                <td th:text="${transaction.amount}"/>
+            </tr>
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item" th:classappend="${currentPage == 1 ? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{/transfer(page=1)}">&#10218</a>
+                </li>
+                <li class="page-item" th:classappend="${currentPage == 1 ? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{/transfer(page=${currentPage - 1})}">&#10216</a>
+                </li>
+                <div th:each="pageNumber: ${pageNumbers}">
+                    <li class="page-item" th:classappend="${currentPage == pageNumber ? 'active' : ''}">
+                        <a class="page-link" th:href="@{/transfer(page=${pageNumber})}" th:text="${pageNumber}"></a>
+                    </li>
+                </div>
+
+                <li class="page-item" th:classappend="${currentPage == totalPage ? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{/transfer(page=${currentPage + 1})}">&#10217</a>
+                </li>
+                <li class="page-item" th:classappend="${currentPage == totalPage ? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{/transfer(page=${totalPage})}">&#10219</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>
 <div th:replace="~{fragments/footer :: footer}"></div>
