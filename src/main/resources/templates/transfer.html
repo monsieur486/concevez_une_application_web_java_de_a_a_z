@@ -18,7 +18,9 @@
                 <span class="badge bg-secondary" th:text="'Solde: ' + ${user.balance}/100 + '€'"></span>
             </h3>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="button" class="btn btn-primary">Add Connection</button>
+                <a class="page-link" th:href="@{/connections}">
+                    <button type="button" class="btn btn-primary">Add Connection</button>
+                </a>
             </div>
             <div class="paiementForm text-center">
                 <form class="row gy-2 gx-3 align-items-center">

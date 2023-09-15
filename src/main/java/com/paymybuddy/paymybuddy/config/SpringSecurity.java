@@ -49,6 +49,7 @@ public class SpringSecurity {
                         .requestMatchers("/register/**").permitAll()
                         .requestMatchers("/contact/**").permitAll()
                         .requestMatchers("/transfer/**").authenticated()
+                        .requestMatchers("/connections/**").authenticated()
                         .requestMatchers("/profile/**").authenticated()
                 ).formLogin(
                         form -> form
