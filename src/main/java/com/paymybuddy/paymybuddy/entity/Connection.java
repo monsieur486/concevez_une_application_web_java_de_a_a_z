@@ -3,10 +3,6 @@ package com.paymybuddy.paymybuddy.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.List;
-
 @Getter
 @Setter
 @ToString
@@ -15,30 +11,18 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "connections")
-public class Connection implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
+public class Connection {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
-    @ToString.Exclude
+    @ManyToOne
     private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
-    @ToString.Exclude
+    @ManyToOne
     private User userConnected;
 
     @Column(nullable = false)
     private String nickname;
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "connection_id")
-    @ToString.Exclude
-    private List<Transaction> transactions;
 }

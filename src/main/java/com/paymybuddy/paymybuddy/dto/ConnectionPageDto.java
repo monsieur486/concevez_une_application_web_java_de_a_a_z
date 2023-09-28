@@ -1,7 +1,6 @@
 package com.paymybuddy.paymybuddy.dto;
 
 import com.paymybuddy.paymybuddy.entity.Connection;
-import com.paymybuddy.paymybuddy.entity.Transaction;
 import com.paymybuddy.paymybuddy.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,10 +14,9 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TransferPageDto {
-    private User userConnected;
-    private List<Connection> connections;
-    private Page<Transaction> transactions;
+public class ConnectionPageDto {
+    private User userConnect;
+    private Page<Connection> connections;
     private List<Integer> pageNumbers;
     private Integer currentPage = 1;
     private Integer totalPage = 1;

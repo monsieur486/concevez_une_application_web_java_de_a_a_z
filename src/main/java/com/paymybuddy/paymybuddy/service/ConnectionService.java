@@ -3,6 +3,7 @@ package com.paymybuddy.paymybuddy.service;
 import com.paymybuddy.paymybuddy.entity.Connection;
 import com.paymybuddy.paymybuddy.entity.User;
 import com.paymybuddy.paymybuddy.repository.ConnectionRepository;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Service
 @Slf4j
+@Transactional
 public class ConnectionService {
 
     private final ConnectionRepository connectionRepository;
@@ -35,5 +37,13 @@ public class ConnectionService {
 
     public Page<Connection> getPageConnections(User user, int page, int size) {
         return connectionRepository.findByUserOrderByNickname(user, PageRequest.of(page, size));
+    }
+
+    public void deleteConnection(Long id) {
+        connectionRepository.deleteById(id);
+    }
+
+    public Connection getConnection(Long id) {
+        return connectionRepository.findById(id).orElse(null);
     }
 }
