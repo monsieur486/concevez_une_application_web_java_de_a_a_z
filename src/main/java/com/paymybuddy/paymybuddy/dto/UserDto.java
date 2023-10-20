@@ -23,4 +23,14 @@ public class UserDto {
             max = ApplicationConfiguration.MAXIMUM_PASSWORD_LENGTH,
             message = "Password should have at least 8 characters and at most 50 characters")
     private String password;
+
+    @NotEmpty(message = "Password should not be empty")
+    @Size(min = ApplicationConfiguration.MINIMUM_PASSWORD_LENGTH,
+            max = ApplicationConfiguration.MAXIMUM_PASSWORD_LENGTH,
+            message = "Password should have at least 8 characters and at most 50 characters")
+    private String passwordForVerification;
+
+    public Boolean isPasswordMatching() {
+        return password.equals(passwordForVerification);
+    }
 }

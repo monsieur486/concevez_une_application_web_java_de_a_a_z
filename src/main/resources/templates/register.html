@@ -51,6 +51,20 @@
                         </div>
 
                         <div class="form-group mb-3">
+                            <label class="form-label">Password</label>
+                            <input class="form-control"
+                                   id="passwordForVerification"
+                                   name="passwordForVerification"
+                                   placeholder="Enter identic password"
+                                   th:field="*{passwordForVerification}"
+                                   type="password"
+                            />
+                            <p class="text-danger" th:errors="*{password}"
+                               th:if="${#fields.hasErrors('passwordForVerification')}">
+                            </p>
+                        </div>
+
+                        <div class="form-group mb-3">
                             <button class="btn btn-primary" type="submit">Register</button>
                             <span>Already registered? <a href="/" th:href="@{/login}">Login
                              here</a></span>

@@ -80,6 +80,13 @@ public class AuthController {
                             + " characters long");
         }
 
+        if (!user.isPasswordMatching()) {
+            result.rejectValue(
+                    "passwordForVerification",
+                    "",
+                    "Password and password verification must match");
+        }
+
         if (result.hasErrors()) {
             model.addAttribute("user", user);
             return ACTIVE_PAGE;
