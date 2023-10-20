@@ -1,9 +1,9 @@
 package com.paymybuddy.paymybuddy.controller;
 
 import com.paymybuddy.paymybuddy.dto.MessageDto;
-import com.paymybuddy.paymybuddy.entity.Message;
 import com.paymybuddy.paymybuddy.service.MessageService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
+@Slf4j
 public class ContactPageController {
+
+    private static final String ACTIVE_PAGE = "contact";
 
     private final MessageService messageService;
 
@@ -23,24 +26,39 @@ public class ContactPageController {
 
     @GetMapping("/contact")
     public String showAdminPage(Model model) {
-        String activePage = "contact";
-        model.addAttribute("activePage", activePage);
+        MessageDto message = new MessageDto();
+        model.addAttribute("message", message);
+        model.addAttribute("activePage", ACTIVE_PAGE);
         return "contact";
     }
 
-    @PostMapping("/contact")
+    @PostMapping("/contact/send")
     public String addMessage(@Valid @ModelAttribute("message")MessageDto message,
                              BindingResult result,
                              Model model) {
-        Message newMessage = messageService.saveMessage(message);
-        String activePage = "contact";
-        model.addAttribute("activePage", activePage);
-        if (newMessage != null) {
+
+        model.addAttribute("activePage", ACTIVE_PAGE);
+
+        if (message.getEmail().isEmpty()) {
             result.rejectValue(
                     "email",
                     "",
-                    "Email must be non-null");
+                    "Email is required");
         }
-        return "redirect:/" + activePage + "?success";
+
+        if (message.getContent().isEmpty()) {
+            result.rejectValue(
+                    "content",
+                    "",
+                    "Content is required");
+        }
+
+        if (result.hasErrors()) {
+            model.addAttribute("message", message);
+            return ACTIVE_PAGE;
+        }
+
+        messageService.saveMessage(message);
+        return "redirect:/" + ACTIVE_PAGE + "?success";
     }
 }

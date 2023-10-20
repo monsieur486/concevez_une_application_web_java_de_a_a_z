@@ -16,13 +16,11 @@ public class MessageService {
         this.messageRepository = messageRepository;
     }
 
-    public Message saveMessage(MessageDto messageDto) {
+    public void saveMessage(MessageDto messageDto) {
         Message message = new Message();
         message.setEmail(messageDto.getEmail());
         message.setContent(messageDto.getContent());
         messageRepository.save(message);
         log.info("User send message : {}", messageDto.getEmail());
-
-        return message;
     }
 }

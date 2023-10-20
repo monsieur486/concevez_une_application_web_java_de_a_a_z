@@ -1,16 +1,17 @@
 package com.paymybuddy.paymybuddy.dto;
 
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class MessageDto {
 
+    @Email
     private String email;
     private String content;
 }
