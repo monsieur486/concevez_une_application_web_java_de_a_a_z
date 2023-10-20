@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db:3306
--- Généré le : jeu. 28 sep. 2023 à 11:51
+-- Généré le : ven. 20 oct. 2023 à 13:22
 -- Version du serveur : 8.0.33
 -- Version de PHP : 8.1.17
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `connections` (
   `id` bigint NOT NULL,
-  `nickname` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `nickname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `user_id` bigint DEFAULT NULL,
   `user_connected_id` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -58,8 +58,8 @@ INSERT INTO `connections` (`id`, `nickname`, `user_id`, `user_connected_id`) VAL
 
 CREATE TABLE `messages` (
   `id` bigint NOT NULL,
-  `content` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+  `content` text COLLATE utf8mb4_general_ci,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -69,10 +69,10 @@ CREATE TABLE `messages` (
 --
 
 CREATE TABLE `persistent_logins` (
-  `series` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
+  `series` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `last_used` datetime(6) NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
-  `username` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -84,7 +84,7 @@ CREATE TABLE `persistent_logins` (
 CREATE TABLE `transactions` (
   `id` bigint NOT NULL,
   `amount` int NOT NULL,
-  `description` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `connection_id` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -133,8 +133,8 @@ INSERT INTO `transactions` (`id`, `amount`, `description`, `connection_id`) VALU
 CREATE TABLE `users` (
   `id` bigint NOT NULL,
   `balance` int DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

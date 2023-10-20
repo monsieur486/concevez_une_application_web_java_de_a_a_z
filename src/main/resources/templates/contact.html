@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>PMD Contact</title>
     <div th:replace="~{fragments/header :: header-css}"></div>
@@ -11,6 +13,53 @@
 <div class="container">
     <div class="starter-template">
         <h1>Contact page</h1>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">An error happened while sending the message.</div>
+                </div>
+                <div th:if="${param.succes}">
+                    <div class="alert alert-success">Message sent correctly.</div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Contact Form</h3>
+                    </div>
+                    <div class="card-body">
+                        <form
+                                class="form-horizontal"
+                                method="post"
+                                role="form"
+                                th:action="@{/contact}"
+                        >
+                            <div class="mb-3">
+                                <label class="control-label" for="email">Email *</label>
+                                <input class="form-control"
+                                       id="email"
+                                       name="email"
+                                       placeholder="Email"
+                                       type="text"
+                                />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="control-label" for="content">Message *</label>
+                                <textarea class="form-control"
+                                          id="content"
+                                          name="content"
+                                          placeholder="Message"
+                                          type="text"
+                                ></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <button class="btn btn-primary" type="submit">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div th:replace="~{fragments/footer :: footer}"></div>

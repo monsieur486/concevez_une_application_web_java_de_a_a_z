@@ -20,6 +20,7 @@ public class Message {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Lob
+    @Column(name="content", length=512)
     private String content;
 }
