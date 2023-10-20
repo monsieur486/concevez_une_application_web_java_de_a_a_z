@@ -16,4 +16,12 @@ public class StringUtil {
     public static boolean containsDigit(String string) {
         return string.matches(".*\\d.*");
     }
+
+    public static boolean containsSpecialCharacter(String string) {
+        return string.matches(".*[^a-zA-Z0-9].*");
+    }
+
+    public static boolean isValidEmail(String string) {
+        return string.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+    }
 }

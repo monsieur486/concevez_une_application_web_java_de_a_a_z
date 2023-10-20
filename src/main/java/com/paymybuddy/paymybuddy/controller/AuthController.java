@@ -45,6 +45,13 @@ public class AuthController {
                     "There is already an account registered with that email");
         }
 
+        if (!StringUtil.isValidEmail(user.getEmail())) {
+            result.rejectValue(
+                    "email",
+                    "",
+                    "Please enter a valid email address");
+        }
+
         if (ApplicationConfiguration.PASSWORD_MUST_CONTAIN_UPPERCASE
                 && (!StringUtil.containsCapitalLetter(user.getPassword()))) {
             result.rejectValue(

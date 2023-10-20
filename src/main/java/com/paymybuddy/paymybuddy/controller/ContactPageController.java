@@ -2,6 +2,7 @@ package com.paymybuddy.paymybuddy.controller;
 
 import com.paymybuddy.paymybuddy.dto.MessageDto;
 import com.paymybuddy.paymybuddy.service.MessageService;
+import com.paymybuddy.paymybuddy.utils.StringUtil;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -44,6 +45,13 @@ public class ContactPageController {
                     "email",
                     "",
                     "Email is required");
+        }
+
+        if (!StringUtil.isValidEmail(message.getEmail())) {
+            result.rejectValue(
+                    "email",
+                    "",
+                    "Please enter a valid email address");
         }
 
         if (message.getContent().isEmpty()) {
