@@ -11,7 +11,12 @@
 <div class="container">
     <div class="starter-template">
         <div class="connectionTab">
-            <h3>Add Connection</h3>
+            <div>
+                <h5>Solde</h5>
+                <p th:text="${solde}"/>
+            </div>
+
+            <h5>Add Connection</h5>
             <div th:if="${param.success}">
                 <div class="alert alert-success">Connection add correctly.</div>
             </div>
@@ -53,11 +58,11 @@
                 </form>
             </div>
         </div>
-        <h3>My Connections</h3>
+        <h5>My Connections</h5>
         <div>
             <div>
                 <div th:if="${connections.isEmpty()}">
-                    <h5>No connections yet!</h5>
+                    <p>No connections yet!</p>
                 </div>
                 <div th:unless="${connections.isEmpty()}">
                     <table class="table table-striped">

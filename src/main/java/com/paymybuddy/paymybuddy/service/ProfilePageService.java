@@ -4,6 +4,7 @@ import com.paymybuddy.paymybuddy.dto.ConnectionDto;
 import com.paymybuddy.paymybuddy.dto.ProfilePageDto;
 import com.paymybuddy.paymybuddy.entity.Connection;
 import com.paymybuddy.paymybuddy.entity.User;
+import com.paymybuddy.paymybuddy.utils.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -63,6 +64,7 @@ public class ProfilePageService {
 
         User userDB = userService.findByEmail(principal);
         profilePageDto.setUserConnected(userDB.getEmail());
+        profilePageDto.setSolde(StringUtil.getMoney(userDB.getBalance()));
 
         if (connectionDto == null) {
             connectionDto = new ConnectionDto();

@@ -54,7 +54,7 @@ public class ProfilePageController {
                     "Email is required");
         }
 
-        if (!StringUtil.isValidEmail(connectionForm.getEmail())) {
+        if (StringUtil.isValidEmail(connectionForm.getEmail())) {
             result.rejectValue(
                     "email",
                     "",
@@ -108,6 +108,7 @@ public class ProfilePageController {
         ProfilePageDto profilePageDto = profilePageService.renderProfilePage(principal.getName(), page, size, connectionForm);
         model.addAttribute("activePage", ACTIVE_PAGE);
         model.addAttribute("userConnect", profilePageDto.getUserConnected());
+        model.addAttribute("solde", profilePageDto.getSolde());
         model.addAttribute("connectionForm", profilePageDto.getConnectionForm());
         model.addAttribute("connections", profilePageDto.getConnections());
         model.addAttribute("pageNumbers", profilePageDto.getPageNumbers());

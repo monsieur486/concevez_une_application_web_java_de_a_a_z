@@ -22,6 +22,12 @@ public class StringUtil {
     }
 
     public static boolean isValidEmail(String string) {
-        return string.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+        return !string.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+    }
+
+    public static String getMoney(Integer solde) {
+        String result;
+        result = String.format("%.2f", solde / 100.0);
+        return result + " €";
     }
 }

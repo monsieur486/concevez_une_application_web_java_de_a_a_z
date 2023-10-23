@@ -47,7 +47,7 @@ public class ContactPageController {
                     "Email is required");
         }
 
-        if (!StringUtil.isValidEmail(message.getEmail())) {
+        if (StringUtil.isValidEmail(message.getEmail())) {
             result.rejectValue(
                     "email",
                     "",

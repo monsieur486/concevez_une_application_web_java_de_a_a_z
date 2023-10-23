@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ProfilePageDto {
     private String userConnected;
+    private String solde;
     private ConnectionDto connectionForm;
     private Page<Connection> connections;
     private List<Integer> pageNumbers;
