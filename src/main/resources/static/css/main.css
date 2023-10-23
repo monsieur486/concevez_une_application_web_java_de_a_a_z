@@ -29,6 +29,40 @@ code {
     font-size: 80%;
 }
 
-footer {
-    margin-top: 30px;
+.mainTitle {
+    color: #87C1F5;
+}
+
+.mainBtn {
+    margin: 10px;
+    color: #fff;
+}
+
+.formTabTitle {
+    margin-top: 10px;
+    text-align: center;
+    background-color: #7bba13;
+    color: #f5f5f5;
+}
+
+.paiementForm {
+    margin: 10px;
+    padding: 15px;
+    background-color: #eaeaea;
+    text-align: center;
+}
+
+.loginForm {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.loginFormElement {
+    margin-bottom: 50px;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.loginBtn {
+    margin-top: 60px;
 }

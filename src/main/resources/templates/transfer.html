@@ -1,8 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
->
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>PMD Transfer</title>
     <div th:replace="~{fragments/header :: header-css}"></div>
@@ -25,11 +24,6 @@
             <h5>Send Money
                 <span class="badge bg-secondary" th:text="'Solde: ' + ${userConnected.balance}/100 + '€'"></span>
             </h5>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <a class="page-link" th:href="@{/profile}">
-                    <button type="button" class="btn btn-primary">Add Connection</button>
-                </a>
-            </div>
             <div class="paiementForm text-center">
                 <div>
                     <div th:if="${connections.isEmpty()}">
@@ -77,7 +71,7 @@
             <div th:unless="${connections.isEmpty()}">
                 <table class="table table-striped">
                     <thead>
-                    <tr class="transactionTabTitle">
+                    <tr class="formTabTitle">
                         <th>Connections</th>
                         <th>Description</th>
                         <th>Amount</th>

@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>PMD Profile</title>
     <div th:replace="~{fragments/header :: header-css}"></div>
@@ -81,6 +83,13 @@
                 </div>
                 <div th:unless="${connections.isEmpty()}">
                     <table class="table table-striped">
+                        <thead>
+                        <tr class="formTabTitle">
+                            <th>Email</th>
+                            <th>Nickname</th>
+                            <th></th>
+                        </tr>
+                        </thead>
                         <tbody class="text-center">
                         <tr th:each="connection: ${connections}">
                             <td th:text="${connection.userConnected.email}"/>
