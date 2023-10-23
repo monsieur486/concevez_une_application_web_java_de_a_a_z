@@ -51,7 +51,7 @@ public class ProfilePageController {
             result.rejectValue(
                     "email",
                     "",
-                    "Email is required");
+                    "Email mandatory");
         }
 
         if (StringUtil.isValidEmail(connectionForm.getEmail())) {
@@ -72,21 +72,21 @@ public class ProfilePageController {
             result.rejectValue(
                     "email",
                     "",
-                    "This user doesn't exist. Friend must be registered");
+                    "User not found. Friend must be registered.");
         }
 
         if (profilePageService.alreadyExistsByFriend(principal.getName(), connectionForm.getEmail())) {
             result.rejectValue(
                     "email",
                     "",
-                    "You are already connected with this user");
+                    "Connection already in list");
         }
 
         if (connectionForm.getNickname().isEmpty()) {
             result.rejectValue(
                     "nickname",
                     "",
-                    "Nickname is required");
+                    "Nickname mandatory");
         }
 
         if (result.hasErrors()) {

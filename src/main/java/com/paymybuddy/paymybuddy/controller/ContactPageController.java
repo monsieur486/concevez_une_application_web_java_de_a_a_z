@@ -44,7 +44,7 @@ public class ContactPageController {
             result.rejectValue(
                     "email",
                     "",
-                    "Email is required");
+                    "Email mandatory");
         }
 
         if (StringUtil.isValidEmail(message.getEmail())) {
@@ -59,7 +59,7 @@ public class ContactPageController {
             result.rejectValue(
                     "content",
                     "",
-                    "Content is required");
+                    "Content mandatory");
         }
 
         if (result.hasErrors()) {
