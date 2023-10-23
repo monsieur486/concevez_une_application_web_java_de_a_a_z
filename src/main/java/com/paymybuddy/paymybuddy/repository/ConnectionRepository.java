@@ -20,4 +20,6 @@ public interface ConnectionRepository extends CrudRepository<Connection, Long> {
     Connection findById(long id);
 
     void deleteById(long id);
+
+    Connection findByUserAndUserConnected(User user, User friend);
 }

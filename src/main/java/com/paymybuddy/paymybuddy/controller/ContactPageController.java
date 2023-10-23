@@ -54,6 +54,7 @@ public class ContactPageController {
                     "Please enter a valid email address");
         }
 
+
         if (message.getContent().isEmpty()) {
             result.rejectValue(
                     "content",

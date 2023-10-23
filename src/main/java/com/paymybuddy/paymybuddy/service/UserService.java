@@ -42,4 +42,8 @@ public class UserService {
         userRepository.save(user);
         log.info("User balance updated : {}", user);
     }
+
+    public Boolean alreadyExist(String email) {
+        return userRepository.existsByEmail(email);
+    }
 }

@@ -10,32 +10,45 @@
 <div th:replace="~{fragments/menu :: menu}"></div>
 <div class="container">
     <div class="starter-template">
-        <h1>Profile</h1>
-        <div class="container" th:if="${user}">
-            <p th:text="${user.getEmail()}"></p>
-            <p th:text="${user.getBalance()}"></p>
-        </div>
-        <div class="container" th:unless="${user}">
-            <p>Not logged in</p>
-        </div>
         <div class="connectionTab">
             <h3>Add Connection</h3>
-            <div class="connectionForm text-center">
-                <form class="row gy-2 gx-3 align-items-center">
-                    <div class="col-sm-4">
-                        <div class="form-outline">
-                            <input class="form-control" id="email" type="text"/>
-                            <label class="form-label" for="email">Email</label>
-                        </div>
+            <div th:if="${param.success}">
+                <div class="alert alert-success">Connection add correctly.</div>
+            </div>
+            <div class="connectionForm">
+                <form
+                        class="row gx-3 gy-2 align-items-center"
+                        method="post"
+                        role="form"
+                        th:action="@{/profile}"
+                        th:object="${connectionForm}"
+                >
+                    <div class="col-sm-3">
+                        <input class="form-control"
+                               id="email"
+                               name="email"
+                               placeholder="Email"
+                               th:field="*{email}"
+                               type="text"
+                        />
+                        <p class="text-danger" th:errors="*{email}"
+                           th:if="${#fields.hasErrors('email')}">
+                        </p>
                     </div>
-                    <div class="col-sm-5">
-                        <div class="form-outline">
-                            <input class="form-control" id="nickname" type="text"/>
-                            <label class="form-label" for="nickname">Nickname</label>
+                    <div class="col-sm-3">
+                        <input class="form-control"
+                               id="nickname"
+                               name="nickname"
+                               placeholder="Nickname"
+                               th:field="*{nickname}"
+                               type="text"
+                        />
+                        <p class="text-danger" th:errors="*{nickname}"
+                           th:if="${#fields.hasErrors('nickname')}">
+                        </p>
                         </div>
-                    </div>
-                    <div class="col-auto">
-                        <button class="btn btn-success" type="submit">Add connection</button>
+                    <div class="col-sm-3">
+                        <button class="btn btn-success" type="submit">Add</button>
                     </div>
                 </form>
             </div>

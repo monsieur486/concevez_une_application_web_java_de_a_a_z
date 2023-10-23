@@ -22,13 +22,12 @@ public class ConnectionService {
         this.connectionRepository = connectionRepository;
     }
 
-    public Connection addConnection(User user, User friend, String nickname) {
+    public void addConnection(User user, User friend, String nickname) {
         Connection connection = new Connection();
         connection.setUser(user);
         connection.setUserConnected(friend);
         connection.setNickname(nickname);
-        log.info("Connection added : {}", connection);
-        return connectionRepository.save(connection);
+        connectionRepository.save(connection);
     }
 
     public List<Connection> getConnections(User user) {
@@ -43,7 +42,7 @@ public class ConnectionService {
         connectionRepository.deleteById(id);
     }
 
-    public Connection getConnection(Long id) {
-        return connectionRepository.findById(id).orElse(null);
+    public Boolean existConnectionByFriend(User user, User friend) {
+        return connectionRepository.findByUserAndUserConnected(user, friend) != null;
     }
 }

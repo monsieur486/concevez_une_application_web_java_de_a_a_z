@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ConnectionDto {
-    private String connectionEmail;
+    private String email;
     private String nickname;
 
 }
