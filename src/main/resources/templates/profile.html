@@ -10,12 +10,27 @@
 <div th:replace="~{fragments/menu :: menu}"></div>
 <div class="container">
     <div class="starter-template">
+        <div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a th:href="@{/}" href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                </ol>
+            </nav>
+        </div>
         <div class="connectionTab">
             <div>
                 <h5>Solde</h5>
-                <p th:text="${solde}"/>
+                <div class="solde">
+                    <p class="d-inline" th:text="${solde}"></p>
+                    <a class="page-link d-inline" th:href="@{/profile/deposit}">
+                        <button type="button" class="btn btn-primary">Deposit</button>
+                    </a>
+                    <a class="page-link d-inline" th:href="@{/profile/withdrawal}">
+                        <button type="button" class="btn btn-primary">Withdrawal</button>
+                    </a>
+                </div>
             </div>
-
             <h5>Add Connection</h5>
             <div th:if="${param.success}">
                 <div class="alert alert-success">Connection add correctly.</div>

@@ -8,6 +8,15 @@
 <div th:replace="~{fragments/menu :: menu}"></div>
 <div class="container">
     <div class="starter-template">
+        <div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a th:href="@{/}" href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a th:href="@{/profile}" href="#">Profile</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Deposit</li>
+                </ol>
+            </nav>
+        </div>
         <h5>Deposit</h5>
     </div>
 </div>

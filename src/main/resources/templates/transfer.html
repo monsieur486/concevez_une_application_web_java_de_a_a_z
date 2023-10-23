@@ -13,10 +13,18 @@
 <div th:replace="~{fragments/menu :: menu}"></div>
 <div class="container">
     <div class="starter-template">
+        <div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a th:href="@{/}" href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Transfert</li>
+                </ol>
+            </nav>
+        </div>
         <div class="paiementTab">
-            <h3>Send Money
+            <h5>Send Money
                 <span class="badge bg-secondary" th:text="'Solde: ' + ${userConnected.balance}/100 + '€'"></span>
-            </h3>
+            </h5>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <a class="page-link" th:href="@{/profile}">
                     <button type="button" class="btn btn-primary">Add Connection</button>
@@ -25,7 +33,7 @@
             <div class="paiementForm text-center">
                 <div>
                     <div th:if="${connections.isEmpty()}">
-                        <h2>No connections yet!</h2>
+                        <h5>No connections yet!</h5>
                     </div>
                     <div th:unless="${connections.isEmpty()}">
                         <form class="row gy-2 gx-3 align-items-center">
@@ -61,7 +69,7 @@
                 </div>
             </div>
         </div>
-        <h3>My Transactions</h3>
+        <h5>My Transactions</h5>
         <div>
             <div th:if="${transactions.isEmpty()}">
                 <h5>No transactions yet!</h5>
