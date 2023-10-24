@@ -40,7 +40,7 @@ public class UserService {
     public void setBalance(User user, Integer balance) {
         user.setBalance(balance);
         userRepository.save(user);
-        log.info("User balance updated : {}", user);
+        log.info("User {} balance updated : {}", user, balance);
     }
 
     public Boolean alreadyExist(String email) {

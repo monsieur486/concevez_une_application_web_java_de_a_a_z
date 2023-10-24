@@ -1,9 +1,12 @@
-package com.paymybuddy.paymybuddy.service;
+package com.paymybuddy.paymybuddy.service.page;
 
 import com.paymybuddy.paymybuddy.dto.form.ConnectionFormDto;
 import com.paymybuddy.paymybuddy.dto.page.ProfilePageDto;
 import com.paymybuddy.paymybuddy.entity.Connection;
 import com.paymybuddy.paymybuddy.entity.User;
+import com.paymybuddy.paymybuddy.service.ConnectionService;
+import com.paymybuddy.paymybuddy.service.TransactionService;
+import com.paymybuddy.paymybuddy.service.UserService;
 import com.paymybuddy.paymybuddy.utils.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
