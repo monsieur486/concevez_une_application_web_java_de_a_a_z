@@ -1,6 +1,6 @@
 package com.paymybuddy.paymybuddy.service;
 
-import com.paymybuddy.paymybuddy.dto.TransferPageDto;
+import com.paymybuddy.paymybuddy.dto.page.TransferPageDto;
 import com.paymybuddy.paymybuddy.entity.Connection;
 import com.paymybuddy.paymybuddy.entity.Transaction;
 import com.paymybuddy.paymybuddy.entity.User;

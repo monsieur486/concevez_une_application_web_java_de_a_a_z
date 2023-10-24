@@ -1,7 +1,7 @@
 package com.paymybuddy.paymybuddy.controller;
 
 import com.paymybuddy.paymybuddy.config.ApplicationConfiguration;
-import com.paymybuddy.paymybuddy.dto.UserDto;
+import com.paymybuddy.paymybuddy.dto.form.UserFormDto;
 import com.paymybuddy.paymybuddy.entity.User;
 import com.paymybuddy.paymybuddy.service.UserService;
 import com.paymybuddy.paymybuddy.utils.StringUtil;
@@ -26,14 +26,14 @@ public class AuthController {
 
     @GetMapping("register")
     public String showRegistrationForm(Model model) {
-        UserDto user = new UserDto();
+        UserFormDto user = new UserFormDto();
         model.addAttribute("user", user);
         model.addAttribute("activePage", ACTIVE_PAGE);
         return ACTIVE_PAGE;
     }
 
     @PostMapping("/register/save")
-    public String registration(@Valid @ModelAttribute("user") UserDto user,
+    public String registration(@Valid @ModelAttribute("user") UserFormDto user,
                                BindingResult result,
                                Model model) {
         User existing = userService.findByEmail(user.getEmail());

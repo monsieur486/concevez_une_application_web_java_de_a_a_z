@@ -1,4 +1,4 @@
-package com.paymybuddy.paymybuddy.dto;
+package com.paymybuddy.paymybuddy.dto.form;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+public class UserFormDto {
     private Long id;
     private String email;
     private String password;

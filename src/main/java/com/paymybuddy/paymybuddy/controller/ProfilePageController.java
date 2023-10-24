@@ -1,7 +1,7 @@
 package com.paymybuddy.paymybuddy.controller;
 
-import com.paymybuddy.paymybuddy.dto.ConnectionDto;
-import com.paymybuddy.paymybuddy.dto.ProfilePageDto;
+import com.paymybuddy.paymybuddy.dto.form.ConnectionFormDto;
+import com.paymybuddy.paymybuddy.dto.page.ProfilePageDto;
 import com.paymybuddy.paymybuddy.service.ProfilePageService;
 import com.paymybuddy.paymybuddy.utils.StringUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -30,15 +30,15 @@ public class ProfilePageController {
                                 Principal principal,
                                 @RequestParam("page") Optional<Integer> page,
                                   @RequestParam("size") Optional<Integer> size,
-                                  ConnectionDto connectionDto
+                                  ConnectionFormDto connectionFormDto
     ) {
-        render(connectionDto, principal, page, size, model);
+        render(connectionFormDto, principal, page, size, model);
 
         return ACTIVE_PAGE;
     }
 
     @PostMapping("/profile")
-    public String addMessage(@ModelAttribute("connectionForm") ConnectionDto connectionForm,
+    public String addMessage(@ModelAttribute("connectionForm") ConnectionFormDto connectionForm,
                              Principal principal,
                              BindingResult result,
                              @RequestParam("page") Optional<Integer> page,
@@ -104,7 +104,7 @@ public class ProfilePageController {
         return "redirect:/" + ACTIVE_PAGE;
     }
 
-    private void render(@ModelAttribute("connectionForm") ConnectionDto connectionForm, Principal principal, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size, Model model) {
+    private void render(@ModelAttribute("connectionForm") ConnectionFormDto connectionForm, Principal principal, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size, Model model) {
         ProfilePageDto profilePageDto = profilePageService.renderProfilePage(principal.getName(), page, size, connectionForm);
         model.addAttribute("activePage", ACTIVE_PAGE);
         model.addAttribute("userConnect", profilePageDto.getUserConnected());

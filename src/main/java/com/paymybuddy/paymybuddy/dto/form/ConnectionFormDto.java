@@ -1,4 +1,4 @@
-package com.paymybuddy.paymybuddy.dto;
+package com.paymybuddy.paymybuddy.dto.form;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DepositPageDto {
+public class ConnectionFormDto {
     private String email;
-    private String solde;
-    private Integer amount;
+    private String nickname;
 }

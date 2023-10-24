@@ -1,6 +1,6 @@
 package com.paymybuddy.paymybuddy.service;
 
-import com.paymybuddy.paymybuddy.dto.UserDto;
+import com.paymybuddy.paymybuddy.dto.form.UserFormDto;
 import com.paymybuddy.paymybuddy.entity.User;
 import com.paymybuddy.paymybuddy.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -20,16 +20,16 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void saveUser(UserDto userDto) {
+    public void saveUser(UserFormDto userFormDto) {
         User user = new User();
-        user.setEmail(userDto.getEmail());
-        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        if (Boolean.TRUE.equals(userRepository.existsByEmail(userDto.getEmail()))) {
-            log.error("User already exist : {}", userDto.getEmail());
+        user.setEmail(userFormDto.getEmail());
+        user.setPassword(passwordEncoder.encode(userFormDto.getPassword()));
+        if (Boolean.TRUE.equals(userRepository.existsByEmail(userFormDto.getEmail()))) {
+            log.error("User already exist : {}", userFormDto.getEmail());
             return;
         }
         userRepository.save(user);
-        log.info("User created : {}", userDto.getEmail());
+        log.info("User created : {}", userFormDto.getEmail());
     }
 
     public User findByEmail(String email) {

@@ -1,7 +1,7 @@
 package com.paymybuddy.paymybuddy.service;
 
-import com.paymybuddy.paymybuddy.dto.ConnectionDto;
-import com.paymybuddy.paymybuddy.dto.ProfilePageDto;
+import com.paymybuddy.paymybuddy.dto.form.ConnectionFormDto;
+import com.paymybuddy.paymybuddy.dto.page.ProfilePageDto;
 import com.paymybuddy.paymybuddy.entity.Connection;
 import com.paymybuddy.paymybuddy.entity.User;
 import com.paymybuddy.paymybuddy.utils.StringUtil;
@@ -33,12 +33,12 @@ public class ProfilePageService {
         log.info("Connection deleted id: {}", id);
     }
 
-    public void addConnection(String user, ConnectionDto connectionDto) {
+    public void addConnection(String user, ConnectionFormDto connectionFormDto) {
         User userDB = userService.findByEmail(user);
-        User userConnectedDB = userService.findByEmail(connectionDto.getEmail());
-        String nickname = connectionDto.getNickname();
+        User userConnectedDB = userService.findByEmail(connectionFormDto.getEmail());
+        String nickname = connectionFormDto.getNickname();
         connectionService.addConnection(userDB, userConnectedDB, nickname);
-        log.info("Connection added: {}", connectionDto);
+        log.info("Connection added: {}", connectionFormDto);
     }
 
     public Boolean friendAlreadyExists(String user) {
@@ -54,7 +54,7 @@ public class ProfilePageService {
     public ProfilePageDto renderProfilePage(String principal,
                                             Optional<Integer> page,
                                             Optional<Integer> size,
-                                            ConnectionDto connectionDto) {
+                                            ConnectionFormDto connectionFormDto) {
 
         ProfilePageDto profilePageDto = new ProfilePageDto();
 
@@ -66,10 +66,10 @@ public class ProfilePageService {
         profilePageDto.setUserConnected(userDB.getEmail());
         profilePageDto.setSolde(StringUtil.getMoney(userDB.getBalance()));
 
-        if (connectionDto == null) {
-            connectionDto = new ConnectionDto();
+        if (connectionFormDto == null) {
+            connectionFormDto = new ConnectionFormDto();
         }
-        profilePageDto.setConnectionForm(connectionDto);
+        profilePageDto.setConnectionForm(connectionFormDto);
 
         Page<Connection> connectionsDB = connectionService.getPageConnections(userDB, currentPage - 1, pageSize);
         profilePageDto.setConnections(connectionsDB);

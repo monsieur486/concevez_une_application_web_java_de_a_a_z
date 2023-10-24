@@ -1,6 +1,6 @@
 package com.paymybuddy.paymybuddy.controller;
 
-import com.paymybuddy.paymybuddy.dto.TransferPageDto;
+import com.paymybuddy.paymybuddy.dto.page.TransferPageDto;
 import com.paymybuddy.paymybuddy.service.TransferPageDtoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

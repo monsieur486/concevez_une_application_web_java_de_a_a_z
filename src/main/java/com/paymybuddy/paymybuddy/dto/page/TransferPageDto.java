@@ -1,4 +1,4 @@
-package com.paymybuddy.paymybuddy.dto;
+package com.paymybuddy.paymybuddy.dto.page;
 
 import com.paymybuddy.paymybuddy.entity.Connection;
 import com.paymybuddy.paymybuddy.entity.Transaction;

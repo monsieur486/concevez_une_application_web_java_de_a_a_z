@@ -1,5 +1,6 @@
-package com.paymybuddy.paymybuddy.dto;
+package com.paymybuddy.paymybuddy.dto.page;
 
+import com.paymybuddy.paymybuddy.dto.form.ConnectionFormDto;
 import com.paymybuddy.paymybuddy.entity.Connection;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +15,7 @@ import java.util.List;
 public class ProfilePageDto {
     private String userConnected;
     private String solde;
-    private ConnectionDto connectionForm;
+    private ConnectionFormDto connectionForm;
     private Page<Connection> connections;
     private List<Integer> pageNumbers;
     private Integer currentPage = 1;

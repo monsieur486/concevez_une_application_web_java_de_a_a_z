@@ -1,6 +1,6 @@
 package com.paymybuddy.paymybuddy.controller;
 
-import com.paymybuddy.paymybuddy.dto.MessageDto;
+import com.paymybuddy.paymybuddy.dto.form.MessageFormDto;
 import com.paymybuddy.paymybuddy.service.MessageService;
 import com.paymybuddy.paymybuddy.utils.StringUtil;
 import jakarta.validation.Valid;
@@ -27,14 +27,14 @@ public class ContactPageController {
 
     @GetMapping("/contact")
     public String showAdminPage(Model model) {
-        MessageDto message = new MessageDto();
+        MessageFormDto message = new MessageFormDto();
         model.addAttribute("message", message);
         model.addAttribute("activePage", ACTIVE_PAGE);
         return "contact";
     }
 
     @PostMapping("/contact/send")
-    public String addMessage(@Valid @ModelAttribute("message")MessageDto message,
+    public String addMessage(@Valid @ModelAttribute("message") MessageFormDto message,
                              BindingResult result,
                              Model model) {
 
