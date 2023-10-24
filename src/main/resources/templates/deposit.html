@@ -21,6 +21,15 @@
         </div>
         <h5>Deposit</h5>
         <div>
+            <p class="d-inline">Solde :</p>
+            <p class="d-inline" th:text="${solde}"></p>
+        </div>
+        <div th:if="${param.success}">
+            <div class="alert alert-success">Deposit add correctly.</div>
+        </div>
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">An error has occurred. Please try later.</div>
+        </div>
             <form
                     class="row gx-3 gy-2 align-items-center"
                     method="post"

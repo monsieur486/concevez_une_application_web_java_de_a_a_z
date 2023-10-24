@@ -1,7 +1,6 @@
 package com.paymybuddy.paymybuddy.controller;
 
 import com.paymybuddy.paymybuddy.config.ApplicationConfiguration;
-import com.paymybuddy.paymybuddy.dto.form.ConnectionFormDto;
 import com.paymybuddy.paymybuddy.dto.form.DepositFormDto;
 import com.paymybuddy.paymybuddy.dto.page.DepositPageDto;
 import com.paymybuddy.paymybuddy.service.page.DepositPageService;
@@ -77,6 +76,6 @@ public class DepositPageController {
 
         depositPageService.depositMoney(principal.getName(), depositForm.getAmount());
 
-        return "redirect:/" + ACTIVE_PAGE;
+        return "redirect:/profile/deposit?success";
     }
 }

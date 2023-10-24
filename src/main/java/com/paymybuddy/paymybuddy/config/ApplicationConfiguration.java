@@ -7,7 +7,7 @@ public class ApplicationConfiguration {
 
     // Display
     public static final int NUMBER_OF_CONNECTIONS_TO_DISPLAY = 4;
-    public static final int NUMBER_OF_TRANSACTIONS_TO_DISPLAY = 4;
+    public static final int NUMBER_OF_TRANSACTIONS_TO_DISPLAY = 3;
 
     // Password configuration
     public static final int MINIMUM_PASSWORD_LENGTH = 8;
