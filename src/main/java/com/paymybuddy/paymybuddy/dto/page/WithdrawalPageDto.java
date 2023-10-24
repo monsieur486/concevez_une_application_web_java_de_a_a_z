@@ -1,6 +1,6 @@
 package com.paymybuddy.paymybuddy.dto.page;
 
-import com.paymybuddy.paymybuddy.dto.form.DepositFormDto;
+import com.paymybuddy.paymybuddy.dto.form.WithdrawalFormDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DepositPageDto {
+public class WithdrawalPageDto {
     private String email;
     private String solde;
-    private DepositFormDto depositForm;
+    private WithdrawalFormDto withdrawalForm;
 }

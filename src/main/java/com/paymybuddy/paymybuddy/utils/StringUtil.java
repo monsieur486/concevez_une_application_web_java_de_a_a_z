@@ -1,5 +1,8 @@
 package com.paymybuddy.paymybuddy.utils;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class StringUtil {
 
     private StringUtil() {
