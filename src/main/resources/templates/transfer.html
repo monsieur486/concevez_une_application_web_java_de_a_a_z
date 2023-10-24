@@ -21,9 +21,12 @@
             </nav>
         </div>
         <div class="paiementTab">
-            <h5>Send Money
+            <h5 class="d-inline">Send Money
                 <span class="badge bg-secondary" th:text="'Solde: ' + ${userConnected.balance}/100 + '€'"></span>
             </h5>
+            <a class="page-link d-inline" th:href="@{/profile}">
+                <button class="btn btn-primary" type="button">Add connection</button>
+            </a>
             <div class="paiementForm text-center">
                 <div>
                     <div th:if="${connections.isEmpty()}">

@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MessageDto {
+public class DepositPageDto {
     private String email;
-    private String content;
+    private String solde;
+    private Integer amount;
 }

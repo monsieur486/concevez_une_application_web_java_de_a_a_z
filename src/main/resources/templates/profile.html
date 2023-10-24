@@ -22,16 +22,14 @@
         </div>
         <div class="connectionTab">
             <div>
-                <h5>Solde</h5>
-                <div class="solde">
-                    <p class="d-inline" th:text="${solde}"></p>
-                    <a class="page-link d-inline" th:href="@{/profile/deposit}">
-                        <button type="button" class="btn btn-primary">Deposit</button>
-                    </a>
-                    <a class="page-link d-inline" th:href="@{/profile/withdrawal}">
-                        <button type="button" class="btn btn-primary">Withdrawal</button>
-                    </a>
-                </div>
+                <h5 class="d-inline">Solde</h5>
+                <p class="d-inline" th:text="${solde}"></p>
+                <a class="page-link d-inline" th:href="@{/profile/deposit}">
+                    <button class="btn btn-primary" type="button">Deposit</button>
+                </a>
+                <a class="page-link d-inline" th:href="@{/profile/withdrawal}">
+                    <button class="btn btn-primary" type="button">Withdrawal</button>
+                </a>
             </div>
             <h5>Add Connection</h5>
             <div th:if="${param.success}">
@@ -49,7 +47,7 @@
                         <input class="form-control"
                                id="email"
                                name="email"
-                               placeholder="Email"
+                               placeholder="Email*"
                                th:field="*{email}"
                                type="text"
                         />
@@ -61,7 +59,7 @@
                         <input class="form-control"
                                id="nickname"
                                name="nickname"
-                               placeholder="Nickname"
+                               placeholder="Nickname*"
                                th:field="*{nickname}"
                                type="text"
                         />
