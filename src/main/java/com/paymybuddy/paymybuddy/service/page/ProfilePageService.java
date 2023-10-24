@@ -64,7 +64,7 @@ public class ProfilePageService {
 
         int currentPage = page.orElse(1);
         if (currentPage < 1) currentPage = 1;
-        int pageSize = size.orElse(ApplicationConfiguration.NUMBER_OF_LINES_TO_DISPLAY);
+        int pageSize = size.orElse(ApplicationConfiguration.NUMBER_OF_CONNECTIONS_TO_DISPLAY);
 
         User userDB = userService.findByEmail(principal);
         profilePageDto.setUserConnected(userDB.getEmail());
