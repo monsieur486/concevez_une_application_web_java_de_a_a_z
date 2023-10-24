@@ -33,4 +33,8 @@ public class StringUtil {
         result = String.format("%.2f", solde / 100.0);
         return result + " €";
     }
+
+    public static Boolean isEven(Integer number) {
+        return number % 2 == 0;
+    }
 }
