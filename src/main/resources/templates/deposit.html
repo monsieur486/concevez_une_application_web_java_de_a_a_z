@@ -20,6 +20,33 @@
             </nav>
         </div>
         <h5>Deposit</h5>
+        <div>
+            <form
+                    class="row gx-3 gy-2 align-items-center"
+                    method="post"
+                    role="form"
+                    th:action="@{/profile/deposit}"
+                    th:object="${depositForm}"
+            >
+                <div class="col-sm-3">
+                    <label class="form-label" for="amount"></label>
+                    <input
+                            class="form-control"
+                            id="amount"
+                            name="amount"
+                            th:field="*{amount}"
+                            placeholder="Amount"
+                            type="number"/>
+
+                    <p class="text-danger" th:errors="*{amount}"
+                       th:if="${#fields.hasErrors('amount')}">
+                    </p>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-success" type="submit">Deposit</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 <div th:replace="~{fragments/footer :: footer}"></div>
