@@ -1,5 +1,6 @@
 package com.paymybuddy.paymybuddy.service.page;
 
+import com.paymybuddy.paymybuddy.config.ApplicationConfiguration;
 import com.paymybuddy.paymybuddy.dto.form.ConnectionFormDto;
 import com.paymybuddy.paymybuddy.dto.page.ProfilePageDto;
 import com.paymybuddy.paymybuddy.entity.Connection;
@@ -63,7 +64,7 @@ public class ProfilePageService {
 
         int currentPage = page.orElse(1);
         if (currentPage < 1) currentPage = 1;
-        int pageSize = size.orElse(5);
+        int pageSize = size.orElse(ApplicationConfiguration.NUMBER_OF_LINES_TO_DISPLAY);
 
         User userDB = userService.findByEmail(principal);
         profilePageDto.setUserConnected(userDB.getEmail());
