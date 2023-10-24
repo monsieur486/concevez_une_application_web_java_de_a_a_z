@@ -38,9 +38,6 @@ public class DepositPageService {
         if(depositForm == null) {
             depositForm = new DepositFormDto();
         }
-        if(depositForm.getAmount() == null) {
-            depositForm.setAmount(0);
-        }
 
         depositPageDto.setDepositForm(depositForm);
 

@@ -49,11 +49,26 @@ public class DepositPageController {
         model.addAttribute("solde", depositPageDto.getSolde());
         model.addAttribute("depositForm", depositPageDto.getDepositForm());
 
+        if(depositForm.getAmount() == null) {
+            result.rejectValue(
+                    "amount",
+                    "",
+                    "Deposit mandatory");
+            return "deposit";
+        }
+
         if (depositForm.getAmount() < ApplicationConfiguration.MINIMUM_AMOUNT_DEPOSIT) {
             result.rejectValue(
                     "amount",
                     "",
-                    "Minimum amount is " + ApplicationConfiguration.MINIMUM_AMOUNT_DEPOSIT + "€");
+                    "Minimum deposit " + ApplicationConfiguration.MINIMUM_AMOUNT_DEPOSIT + "€");
+        }
+
+        if(depositForm.getAmount() > ApplicationConfiguration.MAXIMUM_AMOUNT_DEPOSIT) {
+            result.rejectValue(
+                    "amount",
+                    "",
+                    "Maximum deposit " + ApplicationConfiguration.MAXIMUM_AMOUNT_DEPOSIT + "€");
         }
 
         if (result.hasErrors()) {
