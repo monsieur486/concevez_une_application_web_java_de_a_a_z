@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DepositPageDto {
-    private String email;
     private String solde;
     private DepositFormDto depositForm;
 }
