@@ -34,7 +34,7 @@ public class StringUtil {
         return result + " €";
     }
 
-    public static Boolean isEven(Integer number) {
+    public static Boolean isEven(int number) {
         return number % 2 == 0;
     }
 }

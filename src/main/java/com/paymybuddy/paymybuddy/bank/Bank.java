@@ -4,12 +4,12 @@ import com.paymybuddy.paymybuddy.utils.StringUtil;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FakeBank implements DepositBank, WithdrawalBank{
+public class Bank implements DepositBank, WithdrawalBank {
 
 
     @Override
-    public Boolean deposit(Integer amount, DepositInformation depositInformation) {
-        if(StringUtil.isEven(amount)){
+    public Boolean deposit(Double amount, DepositInformation depositInformation) {
+        if(StringUtil.isEven(amount.intValue())){
             return true;
         } else {
             return false;
@@ -17,8 +17,8 @@ public class FakeBank implements DepositBank, WithdrawalBank{
     }
 
     @Override
-    public Boolean withdrawal(Integer amount, WithdrawalInformation withdrawalInformation) {
-        if(StringUtil.isEven(amount)){
+    public Boolean withdrawal(Double amount, WithdrawalInformation withdrawalInformation) {
+        if(StringUtil.isEven(amount.intValue())){
             return true;
         } else {
             return false;

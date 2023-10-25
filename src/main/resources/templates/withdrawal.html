@@ -3,7 +3,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>PMD Withadrawal</title>
+    <title>PMD Withdrawal</title>
     <div th:replace="~{fragments/header :: header-css}"></div>
 </head>
 <body>
@@ -19,8 +19,44 @@
                 </ol>
             </nav>
         </div>
-        <h5>Withadrawal</h5>
+        <h5>Withdrawal</h5>
+        <div>
+            <p class="d-inline">Solde :</p>
+            <p class="d-inline" th:text="${solde}"></p>
+        </div>
+        <div th:if="${param.success}">
+            <div class="alert alert-success">Withdrawal added successfully.</div>
+        </div>
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">An error has occurred. Please try again.</div>
+        </div>
+        <form
+                class="row gx-3 gy-2 align-items-center"
+                method="post"
+                role="form"
+                th:action="@{/profile/withdrawal}"
+                th:object="${withdrawalForm}"
+        >
+            <div class="col-sm-3">
+                <label class="form-label" for="amount"></label>
+                <input
+                        class="form-control"
+                        id="amount"
+                        name="amount"
+                        placeholder="Amount"
+                        th:field="*{amount}"
+                        type="number"/>
+
+                <p class="text-danger" th:errors="*{amount}"
+                   th:if="${#fields.hasErrors('amount')}">
+                </p>
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-success" type="submit">Withdrawal</button>
+            </div>
+        </form>
     </div>
+</div>
 </div>
 <div th:replace="~{fragments/footer :: footer}"></div>
 </body>

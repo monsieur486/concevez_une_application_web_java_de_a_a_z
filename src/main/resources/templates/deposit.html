@@ -25,10 +25,10 @@
             <p class="d-inline" th:text="${solde}"></p>
         </div>
         <div th:if="${param.success}">
-            <div class="alert alert-success">Deposit add correctly.</div>
+            <div class="alert alert-success">Deposit added successfully.</div>
         </div>
         <div th:if="${param.error}">
-            <div class="alert alert-danger">An error has occurred. Please try later.</div>
+            <div class="alert alert-danger">An error has occurred. Please try again.</div>
         </div>
             <form
                     class="row gx-3 gy-2 align-items-center"

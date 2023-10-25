@@ -1,12 +1,13 @@
 package com.paymybuddy.paymybuddy.service.page;
 
+import com.paymybuddy.paymybuddy.bank.Bank;
+import com.paymybuddy.paymybuddy.bank.DepositInformation;
 import com.paymybuddy.paymybuddy.config.ApplicationConfiguration;
 import com.paymybuddy.paymybuddy.dto.form.DepositFormDto;
 import com.paymybuddy.paymybuddy.dto.page.DepositPageDto;
 import com.paymybuddy.paymybuddy.entity.User;
 import com.paymybuddy.paymybuddy.service.UserService;
 import com.paymybuddy.paymybuddy.utils.StringUtil;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -16,18 +17,29 @@ public class DepositPageService {
 
     private final UserService userService;
 
-    public DepositPageService(UserService userService) {
+    private final Bank bank;
+
+    public DepositPageService(UserService userService, Bank bank) {
         this.userService = userService;
+        this.bank = bank;
     }
 
-    public void depositMoney(String email, Integer amount) {
+    public Boolean depositMoney(String email, Integer amount, DepositInformation depositInformation) {
         User userDB = userService.findByEmail(email);
         Integer balance = userDB.getBalance();
         Integer amountInCents = amount * 100;
         Double fee = amountInCents * ApplicationConfiguration.DEPOSIT_FEE_PERCENTAGE;
         Integer newBalance = balance + (amountInCents - fee.intValue());
+        Double realAmount = (amountInCents - fee.intValue()) / 100.0;
+
+        Boolean success = bank.deposit(realAmount, depositInformation);
+
+        if (!success) {
+            return false;
+        }
 
         userService.setBalance(userDB, newBalance);
+        return true;
     }
 
     public DepositPageDto renderDepositPage(String principal, DepositFormDto depositForm) {
@@ -40,8 +52,6 @@ public class DepositPageService {
         }
 
         depositPageDto.setDepositForm(depositForm);
-
-        log.warn("DepositPageDto: {}", depositPageDto.toString());
 
         return depositPageDto;
     }

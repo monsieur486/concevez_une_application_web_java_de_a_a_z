@@ -74,8 +74,15 @@ public class DepositPageController {
             return "deposit";
         }
 
-        depositPageService.depositMoney(principal.getName(), depositForm.getAmount());
+        Boolean success = depositPageService.depositMoney(
+                principal.getName(),
+                depositForm.getAmount(),
+                null);
 
-        return "redirect:/profile/deposit?success";
+        if (success) {
+            return "redirect:/profile/deposit?success";
+        } else {
+            return "redirect:/profile/deposit?error";
+        }
     }
 }
