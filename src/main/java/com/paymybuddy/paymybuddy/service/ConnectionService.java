@@ -45,4 +45,8 @@ public class ConnectionService {
     public Boolean existConnectionByFriend(User user, User friend) {
         return connectionRepository.findByUserAndUserConnected(user, friend) != null;
     }
+
+    public Connection findById(Long connectionId) {
+        return connectionRepository.findById(connectionId).orElse(null);
+    }
 }

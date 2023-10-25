@@ -19,7 +19,7 @@ public class ApplicationConfiguration {
 
     // fee configuration
     public static final double TRANSACTION_FEE_PERCENTAGE = 0.005;
-    public static final int MINIMUM_AMOUNT_TRANSACTION = 1;
+    public static final int MINIMUM_AMOUNT_TRANSACTION = 5;
     public static final int MAXIMUM_AMOUNT_TRANSACTION = 1000;
     public static final int MINIMUM_AMOUNT_DEPOSIT = 10;
     public static final double DEPOSIT_FEE_PERCENTAGE = 0.000;

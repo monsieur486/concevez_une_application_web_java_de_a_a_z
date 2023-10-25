@@ -54,7 +54,6 @@ public class WithdrawalPageService {
         }
 
         withdrawalPageDto.setWithdrawalForm(withdrawalForm);
-        log.warn("withdrawalPageDto: {}", withdrawalPageDto.toString());
 
         return withdrawalPageDto;
     }

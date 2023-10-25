@@ -10,6 +10,7 @@ import com.paymybuddy.paymybuddy.service.ConnectionService;
 import com.paymybuddy.paymybuddy.service.TransactionService;
 import com.paymybuddy.paymybuddy.service.UserService;
 import com.paymybuddy.paymybuddy.utils.StringUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 @Service
+@Slf4j
 public class TransferPageService {
 
     private final UserService userService;
@@ -47,14 +49,14 @@ public class TransferPageService {
         User userDB = userService.findByEmail(userMail);
         transferPageDto.setSolde(StringUtil.convertCentsInMoney(userDB.getBalance()));
 
-        List<Connection> connectionsDB = connectionService.getConnections(userDB);
-        if(connectionsDB==null){
-            connectionsDB = List.of();
+        if (transactionForm == null) {
+            log.warn("transactionForm is null - new ceation");
+            transactionForm = new TransactionFormDto();
+
         }
 
-        if (transactionForm == null) {
-            transactionForm = new TransactionFormDto(connectionsDB);
-        }
+        List<Connection> connectionsDB = connectionService.getConnections(userDB);
+        transactionForm.setConnections(connectionsDB);
 
         transferPageDto.setTransactionForm(transactionForm);
 
@@ -75,5 +77,31 @@ public class TransferPageService {
         }
 
         return transferPageDto;
+    }
+
+    public void addTransaction(TransactionFormDto transactionForm, String userMail) {
+        User userDB = userService.findByEmail(userMail);
+        Connection connectionDB = connectionService.findById(transactionForm.getConnectionId());
+        User friendDB = connectionDB.getUserConnected();
+        Integer amount = transactionForm.getAmount()*100;
+        Integer fee = (int) (amount * ApplicationConfiguration.TRANSACTION_FEE_PERCENTAGE);
+        Integer balanceUserDB = userDB.getBalance() - (amount + fee);
+        Integer balanceFriendDB = friendDB.getBalance() + amount;
+
+        userDB.setBalance(balanceUserDB);
+        friendDB.setBalance(balanceFriendDB);
+
+        transactionService.addTransaction(connectionDB, transactionForm.getAmount(), transactionForm.getDescription());
+
+    }
+
+    public Boolean balanceIsSufficient(String userEmail, Integer amount) {
+        User userDB = userService.findByEmail(userEmail);
+        Integer balance = userDB.getBalance();
+        Integer amountInCents = amount * 100;
+        Double fee = amountInCents * ApplicationConfiguration.TRANSACTION_FEE_PERCENTAGE;
+        Integer totalTransaction = amountInCents + fee.intValue() ;
+
+        return balance >= totalTransaction;
     }
 }
