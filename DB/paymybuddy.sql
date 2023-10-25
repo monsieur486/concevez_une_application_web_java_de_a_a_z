@@ -143,16 +143,16 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `balance`, `email`, `password`) VALUES
 (1, 45000, 'demo@user.fr', '$2a$10$mqMZSRpFrMzPFOemrYU8a.sViqrGS/af.DFm0AfvY5ukrfwme46lq'),
-(2, 0, 'odell.west0573@gmail.com', '$2a$10$11v.CYX7OEbomgEcjW6r6uJYnmC5C7ij96ruHIluyQ3DOFF55GnQ2'),
-(3, 0, 'tina.jenkins4372@gmail.com', '$2a$10$wlBlG0KHbJ7s4lKnjeRlzur9awVU/4/yv7KeR6HhVZhiu7Wpe0jTO'),
-(4, 0, 'stanton.king5561@gmail.com', '$2a$10$J7gQLjEBF2ORG1LcF.BeheTuskymNmRVumL80Jip.CXU/HDuDK8fC'),
-(5, 0, 'dorian.cronin7951@gmail.com', '$2a$10$uIl/UXtNAzbuZbC5nP9v4OP1aC/9lXOG0Vej1RvbZhCJ9TXQvbw7.'),
-(6, 0, 'prince.murphy9112@gmail.com', '$2a$10$hBEKQ4DzDYQ/0y33Ir4jHOyYCQcTz1HX6uhC7Jhzycup4kEjJN04q'),
-(7, 0, 'leslie.stokes0180@gmail.com', '$2a$10$RzFBm9KmWNE9ljaWLlLvR.uz3Rus5PPjsL2XjEbPJlXEDXhOdp//u'),
-(8, 0, 'tianna.olson6670@gmail.com', '$2a$10$abZee7J13CAQE4vBylXbBe5x9veBJi4btCdG2IBEaFExcK7qBFnla'),
-(9, 0, 'ligia.harris5271@gmail.com', '$2a$10$RcQXpykhCsoTwbvWVFvohOTtuZUVrrtorQWSNjTlK0lDED9CuaEbW'),
-(10, 0, 'king.schinner7238@gmail.com', '$2a$10$6/g290YtOcG1xKIDLu1UeuQfruNdsfpoqVYC526r7CYMY6d.li2MG'),
-(11, 0, 'blaine.ryan7747@gmail.com', '$2a$10$aUcMVLHVU/ofbxVfkDCWn.Fm3DIdU8Sj8rv0.m1lrLVD1//NWadvi');
+(2, 10000, 'odell.west0573@gmail.com', '$2a$10$11v.CYX7OEbomgEcjW6r6uJYnmC5C7ij96ruHIluyQ3DOFF55GnQ2'),
+(3, 10000, 'tina.jenkins4372@gmail.com', '$2a$10$wlBlG0KHbJ7s4lKnjeRlzur9awVU/4/yv7KeR6HhVZhiu7Wpe0jTO'),
+(4, 10000, 'stanton.king5561@gmail.com', '$2a$10$J7gQLjEBF2ORG1LcF.BeheTuskymNmRVumL80Jip.CXU/HDuDK8fC'),
+(5, 10000, 'dorian.cronin7951@gmail.com', '$2a$10$uIl/UXtNAzbuZbC5nP9v4OP1aC/9lXOG0Vej1RvbZhCJ9TXQvbw7.'),
+(6, 10000, 'prince.murphy9112@gmail.com', '$2a$10$hBEKQ4DzDYQ/0y33Ir4jHOyYCQcTz1HX6uhC7Jhzycup4kEjJN04q'),
+(7, 10000, 'leslie.stokes0180@gmail.com', '$2a$10$RzFBm9KmWNE9ljaWLlLvR.uz3Rus5PPjsL2XjEbPJlXEDXhOdp//u'),
+(8, 10000, 'tianna.olson6670@gmail.com', '$2a$10$abZee7J13CAQE4vBylXbBe5x9veBJi4btCdG2IBEaFExcK7qBFnla'),
+(9, 10000, 'ligia.harris5271@gmail.com', '$2a$10$RcQXpykhCsoTwbvWVFvohOTtuZUVrrtorQWSNjTlK0lDED9CuaEbW'),
+(10, 10000, 'king.schinner7238@gmail.com', '$2a$10$6/g290YtOcG1xKIDLu1UeuQfruNdsfpoqVYC526r7CYMY6d.li2MG'),
+(11, 10000, 'blaine.ryan7747@gmail.com', '$2a$10$aUcMVLHVU/ofbxVfkDCWn.Fm3DIdU8Sj8rv0.m1lrLVD1//NWadvi');
 
 --
 -- Index pour les tables déchargées
