@@ -46,7 +46,7 @@ public class WithdrawalPageController {
         model.addAttribute("solde", withdrawalPageDto.getSolde());
         model.addAttribute("withdrawalForm", withdrawalPageDto.getWithdrawalForm());
 
-        if (withdrawalForm.getAmount() == null) {
+        if (withdrawalForm.getAmount() == null || withdrawalForm.getAmount() == 0) {
             result.rejectValue(
                     "amount",
                     "",
