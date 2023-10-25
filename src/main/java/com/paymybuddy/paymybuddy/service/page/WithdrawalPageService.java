@@ -47,7 +47,7 @@ public class WithdrawalPageService {
         WithdrawalPageDto withdrawalPageDto = new WithdrawalPageDto();
 
         User userDB = userService.findByEmail(userMail);
-        withdrawalPageDto.setSolde(StringUtil.getMoney(userDB.getBalance()));
+        withdrawalPageDto.setSolde(StringUtil.convertCentsInMoney(userDB.getBalance()));
 
         if (withdrawalForm == null) {
             withdrawalForm = new WithdrawalFormDto();

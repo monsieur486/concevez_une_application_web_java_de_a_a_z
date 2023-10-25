@@ -6,10 +6,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class Bank implements DepositBank, WithdrawalBank {
 
+    private static Boolean isEven(int number) {
+        return number % 2 == 0;
+    }
+
 
     @Override
     public Boolean deposit(Double amount, DepositInformation depositInformation) {
-        if(StringUtil.isEven(amount.intValue())){
+        if(isEven(amount.intValue())){
             return true;
         } else {
             return false;
@@ -18,7 +22,7 @@ public class Bank implements DepositBank, WithdrawalBank {
 
     @Override
     public Boolean withdrawal(Double amount, WithdrawalInformation withdrawalInformation) {
-        if(StringUtil.isEven(amount.intValue())){
+        if(isEven(amount.intValue())){
             return true;
         } else {
             return false;

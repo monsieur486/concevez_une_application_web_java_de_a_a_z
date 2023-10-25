@@ -6,6 +6,7 @@ public class ApplicationConfiguration {
     public static final int REMEMBER_ME_VALIDITY_SECONDS = 7 * 24 * 60 * 60;
 
     // Display
+    public static final String CURRENCY = "€";
     public static final int NUMBER_OF_CONNECTIONS_TO_DISPLAY = 5;
     public static final int NUMBER_OF_TRANSACTIONS_TO_DISPLAY = 5;
 

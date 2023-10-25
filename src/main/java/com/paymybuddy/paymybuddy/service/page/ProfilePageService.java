@@ -68,7 +68,7 @@ public class ProfilePageService {
 
         User userDB = userService.findByEmail(principal);
         profilePageDto.setUserConnected(userDB.getEmail());
-        profilePageDto.setSolde(StringUtil.getMoney(userDB.getBalance()));
+        profilePageDto.setSolde(StringUtil.convertCentsInMoney(userDB.getBalance()));
 
         if (connectionFormDto == null) {
             connectionFormDto = new ConnectionFormDto();

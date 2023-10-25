@@ -1,5 +1,6 @@
 package com.paymybuddy.paymybuddy.utils;
 
+import com.paymybuddy.paymybuddy.config.ApplicationConfiguration;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -28,13 +29,7 @@ public class StringUtil {
         return !string.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
     }
 
-    public static String getMoney(Integer solde) {
-        String result;
-        result = String.format("%.2f", solde / 100.0);
-        return result + " €";
-    }
-
-    public static Boolean isEven(int number) {
-        return number % 2 == 0;
+    public static String convertCentsInMoney(Integer solde) {
+        return String.format("%.2f", solde / 100.0) + " " + ApplicationConfiguration.CURRENCY;
     }
 }

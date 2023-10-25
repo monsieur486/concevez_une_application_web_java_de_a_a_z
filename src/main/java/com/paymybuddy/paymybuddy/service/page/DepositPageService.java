@@ -46,7 +46,7 @@ public class DepositPageService {
         DepositPageDto depositPageDto = new DepositPageDto();
 
         User userDB = userService.findByEmail(principal);
-        depositPageDto.setSolde(StringUtil.getMoney(userDB.getBalance()));
+        depositPageDto.setSolde(StringUtil.convertCentsInMoney(userDB.getBalance()));
         if(depositForm == null) {
             depositForm = new DepositFormDto();
         }

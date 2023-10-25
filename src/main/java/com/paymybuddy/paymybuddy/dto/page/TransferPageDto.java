@@ -1,5 +1,6 @@
 package com.paymybuddy.paymybuddy.dto.page;
 
+import com.paymybuddy.paymybuddy.dto.form.TransactionFormDto;
 import com.paymybuddy.paymybuddy.entity.Connection;
 import com.paymybuddy.paymybuddy.entity.Transaction;
 import com.paymybuddy.paymybuddy.entity.User;
@@ -14,8 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TransferPageDto {
-    private User userConnected;
-    private List<Connection> connections;
+    private String solde;
+    private TransactionFormDto transactionForm;
     private Page<Transaction> transactions;
     private List<Integer> pageNumbers;
     private Integer currentPage = 1;

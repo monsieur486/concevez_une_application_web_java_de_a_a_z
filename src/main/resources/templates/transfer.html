@@ -22,24 +22,24 @@
         </div>
         <div class="paiementTab">
             <h5 class="d-inline">Send Money
-                <span class="badge bg-secondary" th:text="'Solde: ' + ${userConnected.balance}/100 + '€'"></span>
+                <span class="badge bg-secondary" th:text="${solde}"></span>
             </h5>
             <a class="page-link d-inline" th:href="@{/profile}">
                 <button class="btn btn-primary" type="button">Add connection</button>
             </a>
             <div class="paiementForm text-center">
-                <div>
-                    <div th:if="${connections.isEmpty()}">
+                <!--<div>
+                    <div th:if="${transactionForm.connections.isEmpty()}">
                         <h5>No connections yet!</h5>
                     </div>
-                    <div th:unless="${connections.isEmpty()}">
+                    <div th:unless="${transactionForm.connections.isEmpty()}">
                         <form class="row gy-2 gx-3 align-items-center">
                             <div class="col-auto">
                                 <label class="visually-hidden">Preference</label>
                                 <label>
                                     <select class="select">
                                         <option value="0">Select a connection</option>
-                                        <div th:each="connection: ${connections}">
+                                        <div th:each="connection: ${transactionForm.connections}">
                                             <option th:text="${connection.nickname}"
                                                     th:value="${connection.id}"></option>
                                         </div>
@@ -63,7 +63,7 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
         <h5>My Transactions</h5>
@@ -71,7 +71,7 @@
             <div th:if="${transactions.isEmpty()}">
                 <h5>No transactions yet!</h5>
             </div>
-            <div th:unless="${connections.isEmpty()}">
+            <div th:unless="${transactions.isEmpty()}">
                 <table class="table table-striped">
                     <thead>
                     <tr class="formTabTitle">
