@@ -32,6 +32,9 @@
                     <div th:if="${transactionForm.connections.isEmpty()}">
                         <h5>No connections yet!</h5>
                     </div>
+                    <div th:if="${param.success}">
+                        <div class="alert alert-success">Transaction added correctly.</div>
+                    </div>
                     <div th:unless="${transactionForm.connections.isEmpty()}">
                         <form class="row gy-2 gx-3 align-items-center"
                               method="post"
