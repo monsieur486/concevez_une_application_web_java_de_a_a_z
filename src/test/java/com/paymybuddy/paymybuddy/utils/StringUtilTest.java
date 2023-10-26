@@ -1,12 +1,11 @@
 package com.paymybuddy.paymybuddy.utils;
 
+import com.paymybuddy.paymybuddy.config.ApplicationConfiguration;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringUtilTest {
-
-
 
     @Test
     void containsCapitalLetter() {
@@ -16,7 +15,7 @@ class StringUtilTest {
 
     @Test
     void containsLowercaseLetter() {
-        assertTrue(StringUtil.containsLowercaseLetter("pasSword"));
+        assertTrue(StringUtil.containsLowercaseLetter("PASsWORD"));
         assertFalse(StringUtil.containsLowercaseLetter("PASSWORD"));
     }
 
@@ -28,8 +27,8 @@ class StringUtilTest {
 
     @Test
     void containsSpecialCharacter() {
-        assertTrue(StringUtil.containsSpecialCharacter("pasSword1!"));
-        assertFalse(StringUtil.containsSpecialCharacter("pasSword1"));
+        assertTrue(StringUtil.containsSpecialCharacter("pasSword!"));
+        assertFalse(StringUtil.containsSpecialCharacter("pasSword"));
     }
 
     @Test
@@ -44,5 +43,8 @@ class StringUtilTest {
 
     @Test
     void convertCentsInMoney() {
+        assertEquals("1,00 "+ ApplicationConfiguration.CURRENCY, StringUtil.convertCentsInMoney(100));
+        assertEquals("2,50 "+ ApplicationConfiguration.CURRENCY, StringUtil.convertCentsInMoney(250));
+        assertEquals("3,05 "+ ApplicationConfiguration.CURRENCY, StringUtil.convertCentsInMoney(305));
     }
 }
