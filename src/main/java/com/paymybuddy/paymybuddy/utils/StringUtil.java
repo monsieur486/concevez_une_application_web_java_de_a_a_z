@@ -26,7 +26,7 @@ public class StringUtil {
     }
 
     public static boolean isValidEmail(String string) {
-        return !string.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+        return string.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
     }
 
     public static String convertCentsInMoney(Integer solde) {

@@ -93,7 +93,7 @@ public class TransferPageController {
                     "Please select a connection");
         }
 
-        if(transferPageService.balanceIsSufficient(principal.getName(), transactionForm.getAmount()) == false) {
+        if(!transferPageService.balanceIsSufficient(principal.getName(), transactionForm.getAmount())) {
             result.rejectValue(
                     "amount",
                     "",

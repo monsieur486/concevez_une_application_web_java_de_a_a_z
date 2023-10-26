@@ -54,7 +54,7 @@ public class ProfilePageController {
                     "Email mandatory");
         }
 
-        if (StringUtil.isValidEmail(connectionForm.getEmail())) {
+        if (!StringUtil.isValidEmail(connectionForm.getEmail())) {
             result.rejectValue(
                     "email",
                     "",

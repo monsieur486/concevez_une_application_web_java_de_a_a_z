@@ -45,7 +45,7 @@ public class AuthController {
                     "There is already an account registered with that email");
         }
 
-        if (StringUtil.isValidEmail(user.getEmail())) {
+        if (!StringUtil.isValidEmail(user.getEmail())) {
             result.rejectValue(
                     "email",
                     "",
