@@ -9,17 +9,16 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class MessageServiceTest {
 
     @InjectMocks
-    MessageService messageService;
+    MessageService service;
 
     @Mock
-    MessageRepository messageRepository;
+    MessageRepository dao;
 
 
     @Test
@@ -27,7 +26,7 @@ class MessageServiceTest {
         MessageFormDto messageFormDto = new MessageFormDto();
         messageFormDto.setEmail("test@test.fr");
         messageFormDto.setContent("test");
-        messageService.saveMessage(messageFormDto);
-        verify(messageRepository, times(1)).save(any(Message.class));
+        service.saveMessage(messageFormDto);
+        verify(dao, times(1)).save(any(Message.class));
     }
 }
