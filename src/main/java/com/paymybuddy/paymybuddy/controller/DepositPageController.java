@@ -48,7 +48,7 @@ public class DepositPageController {
         model.addAttribute("solde", depositPageDto.getSolde());
         model.addAttribute("depositForm", depositPageDto.getDepositForm());
 
-        if(depositForm.getAmount() == null) {
+        if (depositForm.getAmount() == null) {
             result.rejectValue(
                     "amount",
                     "",
@@ -63,7 +63,7 @@ public class DepositPageController {
                     "Minimum deposit " + ApplicationConfiguration.MINIMUM_AMOUNT_DEPOSIT + "€");
         }
 
-        if(depositForm.getAmount() > ApplicationConfiguration.MAXIMUM_AMOUNT_DEPOSIT) {
+        if (depositForm.getAmount() > ApplicationConfiguration.MAXIMUM_AMOUNT_DEPOSIT) {
             result.rejectValue(
                     "amount",
                     "",

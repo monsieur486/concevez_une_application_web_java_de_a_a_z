@@ -43,8 +43,8 @@ class StringUtilTest {
 
     @Test
     void convertCentsInMoney() {
-        assertEquals("1,00 "+ ApplicationConfiguration.CURRENCY, StringUtil.convertCentsInMoney(100));
-        assertEquals("2,50 "+ ApplicationConfiguration.CURRENCY, StringUtil.convertCentsInMoney(250));
-        assertEquals("3,05 "+ ApplicationConfiguration.CURRENCY, StringUtil.convertCentsInMoney(305));
+        assertEquals("1,00 " + ApplicationConfiguration.CURRENCY, StringUtil.convertCentsInMoney(100));
+        assertEquals("2,50 " + ApplicationConfiguration.CURRENCY, StringUtil.convertCentsInMoney(250));
+        assertEquals("3,05 " + ApplicationConfiguration.CURRENCY, StringUtil.convertCentsInMoney(305));
     }
 }

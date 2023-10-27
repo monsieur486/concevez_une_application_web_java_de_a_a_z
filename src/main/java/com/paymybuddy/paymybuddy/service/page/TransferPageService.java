@@ -83,7 +83,7 @@ public class TransferPageService {
         User userDB = userService.findByEmail(userMail);
         Connection connectionDB = connectionService.findById(transactionForm.getConnectionId());
         User friendDB = connectionDB.getUserConnected();
-        Integer amount = transactionForm.getAmount()*100;
+        Integer amount = transactionForm.getAmount() * 100;
         Integer fee = (int) (amount * ApplicationConfiguration.TRANSACTION_FEE_PERCENTAGE);
         Integer balanceUserDB = userDB.getBalance() - (amount + fee);
         Integer balanceFriendDB = friendDB.getBalance() + amount;
@@ -100,7 +100,7 @@ public class TransferPageService {
         Integer balance = userDB.getBalance();
         Integer amountInCents = amount * 100;
         Double fee = amountInCents * ApplicationConfiguration.TRANSACTION_FEE_PERCENTAGE;
-        Integer totalTransaction = amountInCents + fee.intValue() ;
+        Integer totalTransaction = amountInCents + fee.intValue();
 
         return balance >= totalTransaction;
     }

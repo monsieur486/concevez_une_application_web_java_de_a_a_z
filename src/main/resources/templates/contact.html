@@ -13,8 +13,8 @@
         <div>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a th:href="@{/}" href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                    <li class="breadcrumb-item"><a href="#" th:href="@{/}">Home</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">Contact</li>
                 </ol>
             </nav>
         </div>
@@ -44,8 +44,8 @@
                                        id="email"
                                        name="email"
                                        placeholder="Email"
-                                       type="text"
                                        th:field="*{email}"
+                                       type="text"
                                 />
                                 <p class="text-danger" th:errors="*{email}"
                                    th:if="${#fields.hasErrors('email')}">
@@ -58,8 +58,8 @@
                                           id="content"
                                           name="content"
                                           placeholder="Message"
-                                          type="text"
                                           th:field="*{content}"
+                                          type="text"
                                 >
                                 </textarea>
                                 <p class="text-danger" th:errors="*{content}"

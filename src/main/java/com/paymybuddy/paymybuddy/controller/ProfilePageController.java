@@ -27,8 +27,8 @@ public class ProfilePageController {
 
     @GetMapping(value = "/profile")
     public String showProfilePage(Model model,
-                                Principal principal,
-                                @RequestParam("page") Optional<Integer> page,
+                                  Principal principal,
+                                  @RequestParam("page") Optional<Integer> page,
                                   @RequestParam("size") Optional<Integer> size,
                                   ConnectionFormDto connectionFormDto
     ) {

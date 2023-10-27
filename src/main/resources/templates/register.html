@@ -15,8 +15,8 @@
         <div>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a th:href="@{/}" href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Register</li>
+                    <li class="breadcrumb-item"><a href="#" th:href="@{/}">Home</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">Register</li>
                 </ol>
             </nav>
         </div>
@@ -41,7 +41,7 @@
                                                               placeholder="Enter email address"
                                                               th:field="*{email}"
                                                               type="email"
-                            />
+                        />
                             <p class="text-danger" th:errors="*{email}"
                                th:if="${#fields.hasErrors('email')}">
                             </p>

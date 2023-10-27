@@ -1,7 +1,6 @@
 package com.paymybuddy.paymybuddy.controller;
 
 import com.paymybuddy.paymybuddy.config.ApplicationConfiguration;
-import com.paymybuddy.paymybuddy.dto.form.DepositFormDto;
 import com.paymybuddy.paymybuddy.dto.form.WithdrawalFormDto;
 import com.paymybuddy.paymybuddy.dto.page.WithdrawalPageDto;
 import com.paymybuddy.paymybuddy.service.page.WithdrawalPageService;
@@ -11,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 

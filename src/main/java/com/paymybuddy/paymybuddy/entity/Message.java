@@ -21,6 +21,6 @@ public class Message {
     private String email;
 
     @Lob
-    @Column(name="content", length=512)
+    @Column(name = "content", length = 512)
     private String content;
 }

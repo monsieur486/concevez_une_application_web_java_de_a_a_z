@@ -47,7 +47,7 @@ public class DepositPageService {
 
         User userDB = userService.findByEmail(principal);
         depositPageDto.setSolde(StringUtil.convertCentsInMoney(userDB.getBalance()));
-        if(depositForm == null) {
+        if (depositForm == null) {
             depositForm = new DepositFormDto();
         }
 

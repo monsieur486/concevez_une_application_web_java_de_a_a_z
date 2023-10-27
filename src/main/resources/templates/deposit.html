@@ -13,9 +13,9 @@
         <div>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a th:href="@{/}" href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a th:href="@{/profile}" href="#">Profile</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Deposit</li>
+                    <li class="breadcrumb-item"><a href="#" th:href="@{/}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#" th:href="@{/profile}">Profile</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">Deposit</li>
                 </ol>
             </nav>
         </div>
@@ -30,33 +30,33 @@
         <div th:if="${param.error}">
             <div class="alert alert-danger">An error has occurred. Please try again.</div>
         </div>
-            <form
-                    class="row gx-3 gy-2 align-items-center"
-                    method="post"
-                    role="form"
-                    th:action="@{/profile/deposit}"
-                    th:object="${depositForm}"
-            >
-                <div class="col-sm-3">
-                    <label class="form-label" for="amount"></label>
-                    <input
-                            class="form-control"
-                            id="amount"
-                            name="amount"
-                            th:field="*{amount}"
-                            placeholder="Amount"
-                            type="number"/>
+        <form
+                class="row gx-3 gy-2 align-items-center"
+                method="post"
+                role="form"
+                th:action="@{/profile/deposit}"
+                th:object="${depositForm}"
+        >
+            <div class="col-sm-3">
+                <label class="form-label" for="amount"></label>
+                <input
+                        class="form-control"
+                        id="amount"
+                        name="amount"
+                        placeholder="Amount"
+                        th:field="*{amount}"
+                        type="number"/>
 
-                    <p class="text-danger" th:errors="*{amount}"
-                       th:if="${#fields.hasErrors('amount')}">
-                    </p>
-                </div>
-                <div class="col-sm-3">
-                    <button class="btn btn-success" type="submit">Deposit</button>
-                </div>
-            </form>
-        </div>
+                <p class="text-danger" th:errors="*{amount}"
+                   th:if="${#fields.hasErrors('amount')}">
+                </p>
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-success" type="submit">Deposit</button>
+            </div>
+        </form>
     </div>
+</div>
 </div>
 <div th:replace="~{fragments/footer :: footer}"></div>
 </body>

@@ -52,7 +52,7 @@ public class TransferPageController {
 
         render(model, principal, transactionForm, page, size);
 
-        if(transactionForm.getAmount() == null) {
+        if (transactionForm.getAmount() == null) {
             result.rejectValue(
                     "amount",
                     "",
@@ -69,7 +69,7 @@ public class TransferPageController {
                             + ApplicationConfiguration.CURRENCY);
         }
 
-        if(transactionForm.getAmount() > ApplicationConfiguration.MAXIMUM_AMOUNT_TRANSACTION) {
+        if (transactionForm.getAmount() > ApplicationConfiguration.MAXIMUM_AMOUNT_TRANSACTION) {
             result.rejectValue(
                     "amount",
                     "",
@@ -78,7 +78,7 @@ public class TransferPageController {
                             + ApplicationConfiguration.CURRENCY);
         }
 
-        if(transactionForm.getDescription() == null || transactionForm.getDescription().isEmpty()){
+        if (transactionForm.getDescription() == null || transactionForm.getDescription().isEmpty()) {
             result.rejectValue(
                     "description",
                     "",
@@ -93,7 +93,7 @@ public class TransferPageController {
                     "Please select a connection");
         }
 
-        if(!transferPageService.balanceIsSufficient(principal.getName(), transactionForm.getAmount())) {
+        if (!transferPageService.balanceIsSufficient(principal.getName(), transactionForm.getAmount())) {
             result.rejectValue(
                     "amount",
                     "",
@@ -108,6 +108,7 @@ public class TransferPageController {
 
         return "redirect:/" + ACTIVE_PAGE + "?success";
     }
+
     private void render(Model model, Principal principal, TransactionFormDto transactionForm, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
         String activePage = "transfer";
         model.addAttribute("activePage", activePage);

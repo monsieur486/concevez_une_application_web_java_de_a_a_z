@@ -27,6 +27,7 @@ public class ApplicationConfiguration {
     public static final int MINIMUM_AMOUNT_WITHDRAWAL = 0;
     public static final int MAXIMUM_AMOUNT_WITHDRAWAL = 1000;
     public static final double WITHDRAWAL_FEE_PERCENTAGE = 0.000;
+
     private ApplicationConfiguration() {
     }
 }

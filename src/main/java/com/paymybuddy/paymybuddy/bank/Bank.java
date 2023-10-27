@@ -1,6 +1,5 @@
 package com.paymybuddy.paymybuddy.bank;
 
-import com.paymybuddy.paymybuddy.utils.StringUtil;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,19 +12,11 @@ public class Bank implements DepositBank, WithdrawalBank {
 
     @Override
     public Boolean deposit(Double amount, DepositInformation depositInformation) {
-        if(isEven(amount.intValue())){
-            return true;
-        } else {
-            return false;
-        }
+        return isEven(amount.intValue());
     }
 
     @Override
     public Boolean withdrawal(Double amount, WithdrawalInformation withdrawalInformation) {
-        if(isEven(amount.intValue())){
-            return true;
-        } else {
-            return false;
-        }
+        return isEven(amount.intValue());
     }
 }
