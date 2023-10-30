@@ -32,7 +32,6 @@ class CustomUserDetailsServiceTest {
         assertEquals("demo@test.fr", userDetails.getUsername());
     }
 
-    // load User By Invalid Username And Trow UsernameNotFoundException()
     @Test
     void loadUserByInvalidUsernameAndTrowUsernameNotFoundException() {
         when(dao.findByEmail(any())).thenReturn(null);
