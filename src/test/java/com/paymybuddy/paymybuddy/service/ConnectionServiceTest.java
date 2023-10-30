@@ -12,8 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -69,6 +68,7 @@ class ConnectionServiceTest {
     void existConnectionByFriend() {
         User user = new User(1L, "user@test.fr", "pwd", 0);
         User friend = new User(2L, "friend@test.fr", "pwd", 0);
+        User noFriend = new User(3L, "nofriend@test.fr", "pwd", 0);
         Connection connection = new Connection();
         connection.setId(1L);
         connection.setUser(user);
@@ -77,6 +77,7 @@ class ConnectionServiceTest {
 
         when(dao.findByUserAndUserConnected(user, friend)).thenReturn(connection);
         assertTrue(service.existConnectionByFriend(user, friend));
+        assertFalse(service.existConnectionByFriend(user, noFriend));
     }
 
     @Test
