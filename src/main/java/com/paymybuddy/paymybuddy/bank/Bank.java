@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Bank implements DepositBank, WithdrawalBank {
 
-    private static Boolean isEven(int number) {
+    static Boolean isEven(int number) {
         return number % 2 == 0;
     }
 
