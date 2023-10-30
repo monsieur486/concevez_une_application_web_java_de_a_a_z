@@ -1,6 +1,6 @@
 package com.paymybuddy.paymybuddy.service;
 
-import com.paymybuddy.paymybuddy.dto.form.MessageFormDto;
+import com.paymybuddy.paymybuddy.dto.form.ContactFormDto;
 import com.paymybuddy.paymybuddy.entity.Message;
 import com.paymybuddy.paymybuddy.repository.MessageRepository;
 import org.junit.jupiter.api.Test;
@@ -23,10 +23,10 @@ class MessageServiceTest {
 
     @Test
     void saveMessage() {
-        MessageFormDto messageFormDto = new MessageFormDto();
-        messageFormDto.setEmail("test@test.fr");
-        messageFormDto.setContent("test");
-        service.saveMessage(messageFormDto);
+        ContactFormDto contactFormDto = new ContactFormDto();
+        contactFormDto.setEmail("test@test.fr");
+        contactFormDto.setContent("test");
+        service.saveMessage(contactFormDto);
         verify(dao, times(1)).save(any(Message.class));
     }
 }

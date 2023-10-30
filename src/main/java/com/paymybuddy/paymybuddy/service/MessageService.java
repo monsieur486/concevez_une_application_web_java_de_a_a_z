@@ -1,6 +1,6 @@
 package com.paymybuddy.paymybuddy.service;
 
-import com.paymybuddy.paymybuddy.dto.form.MessageFormDto;
+import com.paymybuddy.paymybuddy.dto.form.ContactFormDto;
 import com.paymybuddy.paymybuddy.entity.Message;
 import com.paymybuddy.paymybuddy.repository.MessageRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -16,11 +16,11 @@ public class MessageService {
         this.messageRepository = messageRepository;
     }
 
-    public void saveMessage(MessageFormDto messageFormDto) {
+    public void saveMessage(ContactFormDto contactFormDto) {
         Message message = new Message();
-        message.setEmail(messageFormDto.getEmail());
-        message.setContent(messageFormDto.getContent());
+        message.setEmail(contactFormDto.getEmail());
+        message.setContent(contactFormDto.getContent());
         messageRepository.save(message);
-        log.info("User send message : {}", messageFormDto.getEmail());
+        log.info("User send contactForm : {}", contactFormDto.getEmail());
     }
 }

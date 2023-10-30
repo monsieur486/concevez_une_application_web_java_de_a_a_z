@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MessageFormDto {
+public class ContactFormDto {
     private String email;
     private String content;
 }

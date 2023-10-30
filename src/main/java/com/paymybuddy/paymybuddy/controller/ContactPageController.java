@@ -1,6 +1,6 @@
 package com.paymybuddy.paymybuddy.controller;
 
-import com.paymybuddy.paymybuddy.dto.form.MessageFormDto;
+import com.paymybuddy.paymybuddy.dto.form.ContactFormDto;
 import com.paymybuddy.paymybuddy.service.MessageService;
 import com.paymybuddy.paymybuddy.utils.StringUtil;
 import jakarta.validation.Valid;
@@ -26,28 +26,26 @@ public class ContactPageController {
 
 
     @GetMapping("/contact")
-    public String showAdminPage(Model model) {
-        MessageFormDto message = new MessageFormDto();
-        model.addAttribute("message", message);
-        model.addAttribute("activePage", ACTIVE_PAGE);
+    public String showContactPage(Model model, ContactFormDto contactForm) {
+        render(model, contactForm);
         return "contact";
     }
 
-    @PostMapping("/contact/send")
-    public String addMessage(@Valid @ModelAttribute("message") MessageFormDto message,
+    @PostMapping("/contact")
+    public String addMessage(@Valid @ModelAttribute("contactForm") ContactFormDto contactForm,
                              BindingResult result,
                              Model model) {
 
-        model.addAttribute("activePage", ACTIVE_PAGE);
+        render(model, contactForm);
 
-        if (message.getEmail().isEmpty()) {
+        if (contactForm.getEmail().isEmpty()) {
             result.rejectValue(
                     "email",
                     "",
                     "Email mandatory");
         }
 
-        if (!StringUtil.isValidEmail(message.getEmail())) {
+        if (!StringUtil.isValidEmail(contactForm.getEmail())) {
             result.rejectValue(
                     "email",
                     "",
@@ -55,7 +53,7 @@ public class ContactPageController {
         }
 
 
-        if (message.getContent().isEmpty()) {
+        if (contactForm.getContent().isEmpty()) {
             result.rejectValue(
                     "content",
                     "",
@@ -63,11 +61,17 @@ public class ContactPageController {
         }
 
         if (result.hasErrors()) {
-            model.addAttribute("message", message);
+            model.addAttribute("message", contactForm);
             return ACTIVE_PAGE;
         }
 
-        messageService.saveMessage(message);
+        messageService.saveMessage(contactForm);
         return "redirect:/" + ACTIVE_PAGE + "?success";
+    }
+
+    private void render(Model model, ContactFormDto contactForm) {
+        if(contactForm == null) contactForm = new ContactFormDto();
+        model.addAttribute("contactForm", contactForm);
+        model.addAttribute("activePage", ACTIVE_PAGE);
     }
 }
