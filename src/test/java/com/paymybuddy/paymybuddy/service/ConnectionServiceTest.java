@@ -12,8 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -52,8 +51,18 @@ class ConnectionServiceTest {
 
     }
 
+    // test deleteConnection with mockito
     @Test
     void deleteConnection() {
+        User user = new User(1L, "user@test.fr", "pwd", 0);
+        User friend = new User(2L, "friend@test.fr", "pwd", 0);
+        Connection connection = new Connection();
+        connection.setId(1L);
+        connection.setUser(user);
+        connection.setUserConnected(friend);
+        connection.setNickname("nickname");
+        service.deleteConnection(connection.getId());
+        verify(dao, times(1)).deleteById(connection.getId());
     }
 
     @Test
@@ -72,5 +81,15 @@ class ConnectionServiceTest {
 
     @Test
     void findById() {
+        User user = new User(1L, "user@test.fr", "pwd", 0);
+        User friend = new User(2L, "friend@test.fr", "pwd", 0);
+        Connection connection = new Connection();
+        connection.setId(1L);
+        connection.setUser(user);
+        connection.setUserConnected(friend);
+        connection.setNickname("nickname");
+        when(dao.findById(any(Long.class))).thenReturn(java.util.Optional.of(connection));
+
+        assertEquals(1L, service.findById(1L).getId());
     }
 }
