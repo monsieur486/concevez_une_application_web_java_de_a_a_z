@@ -12,16 +12,16 @@ INSERT INTO `users` (`id`, `balance`, `email`, `password`) VALUES
 (11, 10000, 'blaine.ryan7747@gmail.com', '$2a$10$aUcMVLHVU/ofbxVfkDCWn.Fm3DIdU8Sj8rv0.m1lrLVD1//NWadvi');
 
 INSERT INTO `connections` (`id`, `nickname`, `user_id`, `user_connected_id`) VALUES
-(1, 'Jean-Claude', 1, 2),
-(2, 'Tonton Henry', 1, 3),
-(3, 'Mike', 1, 4),
-(4, 'John', 1, 5),
-(5, 'Fred', 1, 6),
-(6, 'Albert', 1, 7),
-(7, 'Joe', 1, 8),
-(8, 'Nike', 1, 9),
-(9, 'Sam', 1, 10),
-(10, 'William', 1, 11);
+(1, 'Odell', 1, 2),
+(2, 'Tina', 1, 3),
+(3, 'Uncle Stanton', 1, 4),
+(4, 'Dorian', 1, 5),
+(5, 'Prince', 1, 6),
+(6, 'Aunt Leslie', 1, 7),
+(7, 'Tianna', 1, 8),
+(8, 'Ligia', 1, 9),
+(9, 'King', 1, 10),
+(10, 'Blaine', 1, 11);
 
 INSERT INTO `transactions` (`id`, `amount`, `description`, `connection_id`) VALUES
 (1, 10, 'Transaction 1', 1),
