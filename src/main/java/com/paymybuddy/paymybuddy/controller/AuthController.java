@@ -24,7 +24,7 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @GetMapping("register")
+    @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         UserFormDto user = new UserFormDto();
         model.addAttribute("user", user);

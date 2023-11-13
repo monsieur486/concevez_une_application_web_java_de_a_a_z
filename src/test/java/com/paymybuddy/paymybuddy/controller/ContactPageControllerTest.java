@@ -35,7 +35,6 @@ class ContactPageControllerTest {
 
     @Test
     void showContactPage() throws Exception {
-        Message message = new Message();
         this.mockMvc
                 .perform(get("/contact"))
                 .andExpect(status().isOk())
@@ -52,7 +51,6 @@ class ContactPageControllerTest {
         ContactFormDto contactFormDto = new ContactFormDto();
         contactFormDto.setEmail("demo@test.fr");
         contactFormDto.setContent("Test message");
-
 
         this.mockMvc
                 .perform(post("/contact")
