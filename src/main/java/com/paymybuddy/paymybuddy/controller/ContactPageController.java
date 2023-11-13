@@ -1,7 +1,6 @@
 package com.paymybuddy.paymybuddy.controller;
 
 import com.paymybuddy.paymybuddy.dto.form.ContactFormDto;
-import com.paymybuddy.paymybuddy.entity.User;
 import com.paymybuddy.paymybuddy.service.MessageService;
 import com.paymybuddy.paymybuddy.service.UserService;
 import com.paymybuddy.paymybuddy.tools.StringUtil;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
+import java.util.Objects;
 
 @Controller
 @Slf4j
@@ -79,11 +79,8 @@ public class ContactPageController {
     private void render(Model model, ContactFormDto contactForm, Principal principal) {
         if(contactForm == null) contactForm = new ContactFormDto();
 
-        if(principal != null){
-            User userConnected = userService.findByEmail(principal.getName());
-            if(userConnected != null){
-                if(contactForm.getEmail() == null) contactForm.setEmail(userConnected.getEmail());
-            }
+        if (principal != null && Objects.equals(contactForm.getEmail(), "")) {
+            contactForm.setEmail(principal.getName());
         }
 
         model.addAttribute("contactForm", contactForm);
