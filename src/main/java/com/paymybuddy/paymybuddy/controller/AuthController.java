@@ -4,7 +4,7 @@ import com.paymybuddy.paymybuddy.config.ApplicationConfiguration;
 import com.paymybuddy.paymybuddy.dto.form.UserFormDto;
 import com.paymybuddy.paymybuddy.entity.User;
 import com.paymybuddy.paymybuddy.service.UserService;
-import com.paymybuddy.paymybuddy.utils.StringUtil;
+import com.paymybuddy.paymybuddy.tools.StringUtil;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

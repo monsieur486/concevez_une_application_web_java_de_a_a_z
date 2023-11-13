@@ -3,7 +3,7 @@ package com.paymybuddy.paymybuddy.controller;
 import com.paymybuddy.paymybuddy.dto.form.ConnectionFormDto;
 import com.paymybuddy.paymybuddy.dto.page.ProfilePageDto;
 import com.paymybuddy.paymybuddy.service.page.ProfilePageService;
-import com.paymybuddy.paymybuddy.utils.StringUtil;
+import com.paymybuddy.paymybuddy.tools.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

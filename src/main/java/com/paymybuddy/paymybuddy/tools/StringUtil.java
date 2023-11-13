@@ -1,4 +1,4 @@
-package com.paymybuddy.paymybuddy.utils;
+package com.paymybuddy.paymybuddy.tools;
 
 import com.paymybuddy.paymybuddy.config.ApplicationConfiguration;
 import org.springframework.stereotype.Component;
@@ -26,7 +26,7 @@ public class StringUtil {
     }
 
     public static boolean isValidEmail(String string) {
-        return string.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+        return string.matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
     }
 
     public static String convertCentsInMoney(Integer solde) {

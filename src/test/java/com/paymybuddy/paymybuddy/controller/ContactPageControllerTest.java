@@ -2,12 +2,10 @@ package com.paymybuddy.paymybuddy.controller;
 
 import com.paymybuddy.paymybuddy.dto.form.ContactFormDto;
 import com.paymybuddy.paymybuddy.entity.Message;
-import com.paymybuddy.paymybuddy.service.MessageService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -50,7 +48,7 @@ class ContactPageControllerTest {
 
     // Test add message with valid data
     @Test
-    void addMessage() throws Exception {
+    void addMessageWithValidData() throws Exception {
         ContactFormDto contactFormDto = new ContactFormDto();
         contactFormDto.setEmail("demo@test.fr");
         contactFormDto.setContent("Test message");
@@ -64,4 +62,37 @@ class ContactPageControllerTest {
                 .andExpect(status().isOk())
         ;
     }
+
+    // Test add message with invalid email
+    @Test
+    void addMessageWithInvalidEmail() throws Exception {
+        ContactFormDto contactFormDto = new ContactFormDto();
+        contactFormDto.setEmail("demo");
+        contactFormDto.setContent("Test message");
+
+        this.mockMvc
+                .perform(post("/contact")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(contactFormDto.toJson())
+                        .with(csrf()))
+                .andExpect(status().isOk())
+        ;
+    }
+
+    // Test add message with invalid content
+    @Test
+    void addMessageWithInvalidContent() throws Exception {
+        ContactFormDto contactFormDto = new ContactFormDto();
+        contactFormDto.setEmail("demo@test.fr");
+
+        this.mockMvc
+                .perform(post("/contact")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(contactFormDto.toJson())
+                        .with(csrf()))
+                .andExpect(status().isOk())
+        ;
+    }
+
 }
+

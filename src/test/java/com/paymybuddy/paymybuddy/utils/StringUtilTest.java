@@ -1,6 +1,7 @@
 package com.paymybuddy.paymybuddy.utils;
 
 import com.paymybuddy.paymybuddy.config.ApplicationConfiguration;
+import com.paymybuddy.paymybuddy.tools.StringUtil;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

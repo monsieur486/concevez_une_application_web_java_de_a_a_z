@@ -7,7 +7,7 @@ import com.paymybuddy.paymybuddy.dto.form.DepositFormDto;
 import com.paymybuddy.paymybuddy.dto.page.DepositPageDto;
 import com.paymybuddy.paymybuddy.entity.User;
 import com.paymybuddy.paymybuddy.service.UserService;
-import com.paymybuddy.paymybuddy.utils.StringUtil;
+import com.paymybuddy.paymybuddy.tools.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
