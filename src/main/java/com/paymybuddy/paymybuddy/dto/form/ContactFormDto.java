@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ContactFormDto {
-    private String email;
-    private String content;
+    private String email = "";
+    private String content = "";
 }
