@@ -1,6 +1,7 @@
 package com.paymybuddy.paymybuddy.controller;
 
 import com.paymybuddy.paymybuddy.dto.form.UserFormDto;
+import com.paymybuddy.paymybuddy.entity.User;
 import com.paymybuddy.paymybuddy.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,8 +55,6 @@ class AuthControllerTest {
 
     @Test
     void registration() throws Exception  {
-        when(userService.alreadyExist(any(String.class))).thenReturn(false);
-
         this.mockMvc
                 .perform(post("/register/save")
                         .param("email", "demo@test.fr")
@@ -70,8 +69,6 @@ class AuthControllerTest {
 
     @Test
     void registrationWithInvalidEmail() throws Exception  {
-        when(userService.alreadyExist(any(String.class))).thenReturn(false);
-
         this.mockMvc
                 .perform(post("/register/save")
                         .param("email", "demo")
@@ -88,7 +85,9 @@ class AuthControllerTest {
 
     @Test
     void registrationWithExistingEmail() throws Exception  {
-        when(userService.alreadyExist(any(String.class))).thenReturn(true);
+        User user = new User(1L,"demo@test.fr", "Password1!", 0);
+
+        when(userService.findByEmail(any(String.class))).thenReturn(user);
 
         this.mockMvc
                 .perform(post("/register/save")
@@ -97,7 +96,92 @@ class AuthControllerTest {
                         .param("passwordForVerification", "Password1!")
                         .with(csrf())
                 )
-                .andExpect(status().is3xxRedirection())
+                .andExpect(model()
+                        .attributeHasFieldErrors("user", "email")
+                )
+                .andExpect(status().isOk())
         ;
     }
+
+    @Test
+    void registrationWithInvalidPasswordWithOutUperCase() throws Exception  {
+        this.mockMvc
+                .perform(post("/register/save")
+                        .param("email", "demo@test.fr")
+                        .param("password", "password1!")
+                        .param("passwordForVerification", "password1!")
+                        .with(csrf())
+                )
+                .andExpect(model()
+                        .attributeHasFieldErrors("user", "password")
+                )
+                .andExpect(status().isOk())
+        ;
+    }
+
+    @Test
+    void registrationWithInvalidPasswordWithOutLowerCase() throws Exception  {
+        this.mockMvc
+                .perform(post("/register/save")
+                        .param("email", "demo@test.fr")
+                        .param("password", "PASSWORD1!")
+                        .param("passwordForVerification", "PASSWORD1!")
+                        .with(csrf())
+                )
+                .andExpect(model()
+                        .attributeHasFieldErrors("user", "password")
+                )
+                .andExpect(status().isOk())
+        ;
+    }
+
+    @Test
+    void registrationWithInvalidPasswordWithOutDigit() throws Exception  {
+        this.mockMvc
+                .perform(post("/register/save")
+                        .param("email", "demo@test.fr")
+                        .param("password", "Password!")
+                        .param("passwordForVerification", "Password!")
+                        .with(csrf())
+                )
+                .andExpect(model()
+                        .attributeHasFieldErrors("user", "password")
+                )
+                .andExpect(status().isOk())
+        ;
+    }
+
+    @Test
+    void registrationWithInvalidPasswordLengt() throws Exception  {
+        this.mockMvc
+                .perform(post("/register/save")
+                        .param("email", "demo@test.fr")
+                        .param("password", "Psd!1")
+                        .param("passwordForVerification", "Psd!1")
+                        .with(csrf())
+                )
+                .andExpect(model()
+                        .attributeHasFieldErrors("user", "password")
+                )
+                .andExpect(status().isOk())
+        ;
+    }
+
+    @Test
+    void registrationWithInvalidPasswordMatching() throws Exception  {
+        this.mockMvc
+                .perform(post("/register/save")
+                        .param("email", "demo@test.fr")
+                        .param("password", "Password1!")
+                        .param("passwordForVerification", "Pasword1!")
+                        .with(csrf())
+                )
+                .andExpect(model()
+                        .attributeHasFieldErrors("user", "passwordForVerification")
+                )
+                .andExpect(status().isOk())
+        ;
+    }
+
+
 }
