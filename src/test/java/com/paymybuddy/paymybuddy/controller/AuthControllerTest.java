@@ -1,5 +1,6 @@
 package com.paymybuddy.paymybuddy.controller;
 
+import com.paymybuddy.paymybuddy.dto.form.UserFormDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
@@ -43,6 +46,20 @@ class AuthControllerTest {
     }
 
     @Test
-    void registration() {
+    void registration() throws Exception  {
+        UserFormDto user = new UserFormDto();
+        user.setEmail("demo@test.fr");
+        user.setPassword("demo");
+        user.setPasswordForVerification("demo");
+
+        this.mockMvc
+                .perform(post("/register/save")
+                        .characterEncoding("UTF-8")
+                        .contentType("application/json")
+                        .content(user.toJson())
+                        .with(csrf())
+                )
+                .andExpect(status().isOk())
+        ;
     }
 }
