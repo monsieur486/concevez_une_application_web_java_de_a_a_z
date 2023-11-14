@@ -38,12 +38,12 @@ public class ProfilePageController {
     }
 
     @PostMapping("/profile")
-    public String addMessage(@ModelAttribute("connectionForm") ConnectionFormDto connectionForm,
-                             Principal principal,
-                             BindingResult result,
-                             @RequestParam("page") Optional<Integer> page,
-                             @RequestParam("size") Optional<Integer> size,
-                             Model model) {
+    public String addConnection(@ModelAttribute("connectionForm") ConnectionFormDto connectionForm,
+                                Principal principal,
+                                BindingResult result,
+                                @RequestParam("page") Optional<Integer> page,
+                                @RequestParam("size") Optional<Integer> size,
+                                Model model) {
 
         render(connectionForm, principal, page, size, model);
 
