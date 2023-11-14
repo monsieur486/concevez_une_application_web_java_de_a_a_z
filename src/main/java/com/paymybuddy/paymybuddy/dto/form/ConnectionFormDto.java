@@ -15,7 +15,7 @@ public class ConnectionFormDto {
     private String email = "";
     private String nickname = "";
 
-    public String toJson(){
+    public String toJson() {
         final GsonBuilder builder = new GsonBuilder();
         final Gson gson = builder.create();
 

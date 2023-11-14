@@ -26,7 +26,7 @@ class CustomUserDetailsServiceTest {
 
     @Test
     void loadUserByUsername() {
-        User user = new User(1L,"demo@test.fr", "pwd",0);
+        User user = new User(1L, "demo@test.fr", "pwd", 0);
         when(dao.findByEmail("demo@test.fr")).thenReturn(user);
         UserDetails userDetails = service.loadUserByUsername("demo@test.fr");
         assertEquals("demo@test.fr", userDetails.getUsername());

@@ -15,14 +15,14 @@ import java.util.List;
 public class TransactionFormDto {
     List<Connection> connections;
     Long connectionId = 0L;
-    Integer amount=0;
-    String description="";
+    Integer amount = 0;
+    String description = "";
 
     public TransactionFormDto() {
         this.connections = List.of();
     }
 
-    public String toJson(){
+    public String toJson() {
         final GsonBuilder builder = new GsonBuilder();
         final Gson gson = builder.create();
 

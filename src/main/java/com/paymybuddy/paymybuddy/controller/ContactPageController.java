@@ -77,7 +77,7 @@ public class ContactPageController {
     }
 
     private void render(Model model, ContactFormDto contactForm, Principal principal) {
-        if(contactForm == null) contactForm = new ContactFormDto();
+        if (contactForm == null) contactForm = new ContactFormDto();
 
         if (principal != null && Objects.equals(contactForm.getEmail(), "")) {
             contactForm.setEmail(principal.getName());

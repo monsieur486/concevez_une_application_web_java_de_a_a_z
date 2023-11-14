@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class DepositFormDto {
     private Integer amount = 0;
 
-    public String toJson(){
+    public String toJson() {
         final GsonBuilder builder = new GsonBuilder();
         final Gson gson = builder.create();
 

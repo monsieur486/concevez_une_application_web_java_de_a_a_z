@@ -1,6 +1,5 @@
 package com.paymybuddy.paymybuddy.controller;
 
-import com.paymybuddy.paymybuddy.dto.form.UserFormDto;
 import com.paymybuddy.paymybuddy.entity.User;
 import com.paymybuddy.paymybuddy.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +11,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -20,7 +18,6 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
 @SpringBootTest
 class AuthControllerTest {
@@ -54,7 +51,7 @@ class AuthControllerTest {
     }
 
     @Test
-    void registration() throws Exception  {
+    void registration() throws Exception {
         this.mockMvc
                 .perform(post("/register/save")
                         .param("email", "demo@test.fr")
@@ -68,7 +65,7 @@ class AuthControllerTest {
     }
 
     @Test
-    void registrationWithInvalidEmail() throws Exception  {
+    void registrationWithInvalidEmail() throws Exception {
         this.mockMvc
                 .perform(post("/register/save")
                         .param("email", "demo")
@@ -84,8 +81,8 @@ class AuthControllerTest {
     }
 
     @Test
-    void registrationWithExistingEmail() throws Exception  {
-        User user = new User(1L,"demo@test.fr", "Password1!", 0);
+    void registrationWithExistingEmail() throws Exception {
+        User user = new User(1L, "demo@test.fr", "Password1!", 0);
 
         when(userService.findByEmail(any(String.class))).thenReturn(user);
 
@@ -104,7 +101,7 @@ class AuthControllerTest {
     }
 
     @Test
-    void registrationWithInvalidPasswordWithOutUperCase() throws Exception  {
+    void registrationWithInvalidPasswordWithOutUperCase() throws Exception {
         this.mockMvc
                 .perform(post("/register/save")
                         .param("email", "demo@test.fr")
@@ -120,7 +117,7 @@ class AuthControllerTest {
     }
 
     @Test
-    void registrationWithInvalidPasswordWithOutLowerCase() throws Exception  {
+    void registrationWithInvalidPasswordWithOutLowerCase() throws Exception {
         this.mockMvc
                 .perform(post("/register/save")
                         .param("email", "demo@test.fr")
@@ -136,7 +133,7 @@ class AuthControllerTest {
     }
 
     @Test
-    void registrationWithInvalidPasswordWithOutDigit() throws Exception  {
+    void registrationWithInvalidPasswordWithOutDigit() throws Exception {
         this.mockMvc
                 .perform(post("/register/save")
                         .param("email", "demo@test.fr")
@@ -152,7 +149,7 @@ class AuthControllerTest {
     }
 
     @Test
-    void registrationWithInvalidPasswordLengt() throws Exception  {
+    void registrationWithInvalidPasswordLengt() throws Exception {
         this.mockMvc
                 .perform(post("/register/save")
                         .param("email", "demo@test.fr")
@@ -168,7 +165,7 @@ class AuthControllerTest {
     }
 
     @Test
-    void registrationWithInvalidPasswordMatching() throws Exception  {
+    void registrationWithInvalidPasswordMatching() throws Exception {
         this.mockMvc
                 .perform(post("/register/save")
                         .param("email", "demo@test.fr")

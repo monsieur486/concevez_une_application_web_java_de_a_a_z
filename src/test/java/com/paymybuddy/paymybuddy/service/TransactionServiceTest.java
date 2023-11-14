@@ -1,6 +1,5 @@
 package com.paymybuddy.paymybuddy.service;
 
-import com.paymybuddy.paymybuddy.repository.MessageRepository;
 import com.paymybuddy.paymybuddy.repository.TransactionRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -8,7 +7,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -26,14 +26,14 @@ class TransactionServiceTest {
     void addTransaction() {
         service.addTransaction(null, 0, null);
         when(dao.save(any())).thenReturn(null);
-        assertEquals(null, dao.save(any()));
+        assertNull(dao.save(any()));
     }
 
     @Test
     void getTransactions() {
         service.getTransactions(null, 0, 10);
         when(dao.findAllByConnection_UserOrderByIdDesc(any(), any())).thenReturn(null);
-        assertEquals(null, dao.findAllByConnection_UserOrderByIdDesc(any(), any()));
+        assertNull(dao.findAllByConnection_UserOrderByIdDesc(any(), any()));
     }
 
     @Test

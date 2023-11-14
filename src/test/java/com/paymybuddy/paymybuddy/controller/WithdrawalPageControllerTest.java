@@ -1,11 +1,8 @@
 package com.paymybuddy.paymybuddy.controller;
 
 import com.paymybuddy.paymybuddy.config.ApplicationConfiguration;
-import com.paymybuddy.paymybuddy.dto.form.WithdrawalFormDto;
-import com.paymybuddy.paymybuddy.dto.page.WithdrawalPageDto;
 import com.paymybuddy.paymybuddy.entity.User;
 import com.paymybuddy.paymybuddy.service.UserService;
-import com.paymybuddy.paymybuddy.service.page.WithdrawalPageService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

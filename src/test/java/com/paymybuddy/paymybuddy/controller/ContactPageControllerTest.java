@@ -80,7 +80,6 @@ class ContactPageControllerTest {
     }
 
 
-
     // Test add message with empty email
     @Test
     void addMessageWithEmptyEmail() throws Exception {

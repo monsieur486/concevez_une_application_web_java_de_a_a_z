@@ -15,7 +15,7 @@ public class ContactFormDto {
     private String email = "";
     private String content = "";
 
-    public String toJson(){
+    public String toJson() {
         final GsonBuilder builder = new GsonBuilder();
         final Gson gson = builder.create();
 
