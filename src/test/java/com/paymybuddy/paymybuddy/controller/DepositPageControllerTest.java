@@ -1,5 +1,6 @@
 package com.paymybuddy.paymybuddy.controller;
 
+import com.paymybuddy.paymybuddy.config.ApplicationConfiguration;
 import com.paymybuddy.paymybuddy.entity.User;
 import com.paymybuddy.paymybuddy.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -77,6 +78,76 @@ class DepositPageControllerTest {
                         .with(csrf())
                 )
                 .andExpect(model().hasNoErrors())
+        ;
+    }
+
+    @Test
+    @WithMockUser("demo@test.fr")
+    void depositAmountWithIncorrectValueEmptyAmount() throws Exception {
+        Principal mockPrincipal = Mockito.mock(Principal.class);
+        Mockito.when(mockPrincipal.getName()).thenReturn("demo@test.fr");
+
+        User userTest = new User(1L, "demo@test.fr", "password", 100000);
+        when(userService.findByEmail(any(String.class))).thenReturn(userTest);
+
+        this.mockMvc
+                .perform(post("/profile/deposit")
+                        .principal(mockPrincipal)
+                        .param("amount", "0")
+                        .with(csrf())
+                )
+                .andExpect(model()
+                        .attributeHasFieldErrors("depositForm", "amount")
+                )
+                .andExpect(status().isOk())
+        ;
+    }
+
+    @Test
+    @WithMockUser("demo@test.fr")
+    void depositAmountWithIncorrectValueMiniumAmount() throws Exception {
+        Principal mockPrincipal = Mockito.mock(Principal.class);
+        Mockito.when(mockPrincipal.getName()).thenReturn("demo@test.fr");
+
+        User userTest = new User(1L, "demo@test.fr", "password", 100000);
+        when(userService.findByEmail(any(String.class))).thenReturn(userTest);
+
+        int miniumAmount = ApplicationConfiguration.MINIMUM_AMOUNT_DEPOSIT - 1;
+
+        this.mockMvc
+                .perform(post("/profile/deposit")
+                        .principal(mockPrincipal)
+                        .param("amount", Integer.toString(miniumAmount))
+                        .with(csrf())
+                )
+                .andExpect(model()
+                        .attributeHasFieldErrors("depositForm", "amount")
+                )
+                .andExpect(status().isOk())
+        ;
+    }
+
+    @Test
+    @WithMockUser("demo@test.fr")
+    void depositAmountWithIncorrectValueMaximumAmount() throws Exception {
+        Principal mockPrincipal = Mockito.mock(Principal.class);
+        Mockito.when(mockPrincipal.getName()).thenReturn("demo@test.fr");
+
+        User userTest = new User(1L, "demo@test.fr", "password", 100000);
+        when(userService.findByEmail(any(String.class))).thenReturn(userTest);
+
+        int mamimumAmount = ApplicationConfiguration.MAXIMUM_AMOUNT_DEPOSIT + 1;
+
+        this.mockMvc
+                .perform(post("/profile/deposit")
+                        .principal(mockPrincipal)
+                        .param("amount", Integer.toString(mamimumAmount))
+                        .with(csrf())
+                )
+                .andExpect(model()
+                        .attributeHasFieldErrors("depositForm", "amount")
+                )
+                .andExpect(status().isOk())
         ;
     }
 }
