@@ -77,7 +77,30 @@ class DepositPageControllerTest {
                         .param("amount", "100")
                         .with(csrf())
                 )
+                .andExpect(status().is3xxRedirection())
                 .andExpect(model().hasNoErrors())
+                .andExpect(redirectedUrl("/profile/deposit?success"))
+        ;
+    }
+
+    @Test
+    @WithMockUser("demo@test.fr")
+    void depositAmountWithCorrectValueButBankError() throws Exception {
+        Principal mockPrincipal = Mockito.mock(Principal.class);
+        Mockito.when(mockPrincipal.getName()).thenReturn("demo@test.fr");
+
+        User userTest = new User(1L, "demo@test.fr", "password", 0);
+        when(userService.findByEmail(any(String.class))).thenReturn(userTest);
+
+        this.mockMvc
+                .perform(post("/profile/deposit")
+                        .principal(mockPrincipal)
+                        .param("amount", "101")
+                        .with(csrf())
+                )
+                .andExpect(status().is3xxRedirection())
+                .andExpect(model().hasNoErrors())
+                .andExpect(redirectedUrl("/profile/deposit?error"))
         ;
     }
 
@@ -93,7 +116,7 @@ class DepositPageControllerTest {
         this.mockMvc
                 .perform(post("/profile/deposit")
                         .principal(mockPrincipal)
-                        .param("amount", "0")
+                        .param("amount", "")
                         .with(csrf())
                 )
                 .andExpect(model()
