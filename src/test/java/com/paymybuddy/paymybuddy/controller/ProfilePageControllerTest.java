@@ -176,6 +176,18 @@ class ProfilePageControllerTest {
     }
 
     @Test
-    void deleteConnection() {
+    @WithMockUser("demo@test.fr")
+    void deleteConnection() throws Exception {
+        Principal mockPrincipal = Mockito.mock(Principal.class);
+        Mockito.when(mockPrincipal.getName()).thenReturn("demo@test.fr");
+
+        User userTest = new User(1L, "demo@test.fr", "password", 0);
+        when(userService.findByEmail(any(String.class))).thenReturn(userTest);
+
+        this.mockMvc
+                .perform(get("/profile/delete/1"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/profile"))
+        ;
     }
 }
