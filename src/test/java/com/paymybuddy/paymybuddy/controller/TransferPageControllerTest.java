@@ -146,8 +146,8 @@ class TransferPageControllerTest {
         this.mockMvc
                 .perform(post("/transfer")
                         .principal(mockPrincipal)
-                        .param("connectionId", Integer.toString(minimumAmount))
-                        .param("amount", "")
+                        .param("connectionId", "2")
+                        .param("amount", Integer.toString(minimumAmount))
                         .param("description", "description")
                         .with(csrf())
                 )
@@ -172,8 +172,8 @@ class TransferPageControllerTest {
         this.mockMvc
                 .perform(post("/transfer")
                         .principal(mockPrincipal)
-                        .param("connectionId", Integer.toString(maximumAmount))
-                        .param("amount", "")
+                        .param("connectionId", "2")
+                        .param("amount", Integer.toString(maximumAmount))
                         .param("description", "description")
                         .with(csrf())
                 )
