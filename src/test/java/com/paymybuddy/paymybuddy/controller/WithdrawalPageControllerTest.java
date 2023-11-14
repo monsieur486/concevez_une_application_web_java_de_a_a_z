@@ -1,7 +1,11 @@
 package com.paymybuddy.paymybuddy.controller;
 
+import com.paymybuddy.paymybuddy.config.ApplicationConfiguration;
+import com.paymybuddy.paymybuddy.dto.form.WithdrawalFormDto;
+import com.paymybuddy.paymybuddy.dto.page.WithdrawalPageDto;
 import com.paymybuddy.paymybuddy.entity.User;
 import com.paymybuddy.paymybuddy.service.UserService;
+import com.paymybuddy.paymybuddy.service.page.WithdrawalPageService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -79,4 +83,97 @@ class WithdrawalPageControllerTest {
                 .andExpect(model().hasNoErrors())
         ;
     }
+
+    @Test
+    @WithMockUser("demo@test.fr")
+    void withdrawalAmountWithIncorrectValueEmptyAmount() throws Exception {
+        Principal mockPrincipal = Mockito.mock(Principal.class);
+        Mockito.when(mockPrincipal.getName()).thenReturn("demo@test.fr");
+
+        User userTest = new User(1L, "demo@test.fr", "password", 100000);
+        when(userService.findByEmail(any(String.class))).thenReturn(userTest);
+
+        this.mockMvc
+                .perform(post("/profile/withdrawal")
+                        .principal(mockPrincipal)
+                        .param("amount", "0")
+                        .with(csrf())
+                )
+                .andExpect(model()
+                        .attributeHasFieldErrors("withdrawalForm", "amount")
+                )
+                .andExpect(status().isOk())
+        ;
+    }
+
+    @Test
+    @WithMockUser("demo@test.fr")
+    void withdrawalAmountWithIncorrectValueMiniumAmount() throws Exception {
+        Principal mockPrincipal = Mockito.mock(Principal.class);
+        Mockito.when(mockPrincipal.getName()).thenReturn("demo@test.fr");
+
+        User userTest = new User(1L, "demo@test.fr", "password", 100000);
+        when(userService.findByEmail(any(String.class))).thenReturn(userTest);
+
+        int miniumAmount = ApplicationConfiguration.MINIMUM_AMOUNT_WITHDRAWAL - 1;
+
+        this.mockMvc
+                .perform(post("/profile/withdrawal")
+                        .principal(mockPrincipal)
+                        .param("amount", Integer.toString(miniumAmount))
+                        .with(csrf())
+                )
+                .andExpect(model()
+                        .attributeHasFieldErrors("withdrawalForm", "amount")
+                )
+                .andExpect(status().isOk())
+        ;
+    }
+
+    @Test
+    @WithMockUser("demo@test.fr")
+    void withdrawalAmountWithIncorrectValueMaximumAmount() throws Exception {
+        Principal mockPrincipal = Mockito.mock(Principal.class);
+        Mockito.when(mockPrincipal.getName()).thenReturn("demo@test.fr");
+
+        User userTest = new User(1L, "demo@test.fr", "password", 100000);
+        when(userService.findByEmail(any(String.class))).thenReturn(userTest);
+
+        int mamimumAmount = ApplicationConfiguration.MAXIMUM_AMOUNT_WITHDRAWAL + 1;
+
+        this.mockMvc
+                .perform(post("/profile/withdrawal")
+                        .principal(mockPrincipal)
+                        .param("amount", Integer.toString(mamimumAmount))
+                        .with(csrf())
+                )
+                .andExpect(model()
+                        .attributeHasFieldErrors("withdrawalForm", "amount")
+                )
+                .andExpect(status().isOk())
+        ;
+    }
+
+    @Test
+    @WithMockUser("demo@test.fr")
+    void withdrawalAmountWithIncorrectValueNoBalance() throws Exception {
+        Principal mockPrincipal = Mockito.mock(Principal.class);
+        Mockito.when(mockPrincipal.getName()).thenReturn("demo@test.fr");
+
+        User userTest = new User(1L, "demo@test.fr", "password", 0);
+        when(userService.findByEmail(any(String.class))).thenReturn(userTest);
+
+        this.mockMvc
+                .perform(post("/profile/withdrawal")
+                        .principal(mockPrincipal)
+                        .param("amount", Integer.toString(1))
+                        .with(csrf())
+                )
+                .andExpect(model()
+                        .attributeHasFieldErrors("withdrawalForm", "amount")
+                )
+                .andExpect(status().isOk())
+        ;
+    }
+
 }
