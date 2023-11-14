@@ -27,10 +27,10 @@ public class WithdrawalPageService {
     public Boolean withdrawalMoney(String email, Integer amount, WithdrawalInformation withdrawalInformation) {
         User userDB = userService.findByEmail(email);
         Integer balance = userDB.getBalance();
-        Integer amountInCents = amount * 100;
-        Double fee = amountInCents * ApplicationConfiguration.WITHDRAWAL_FEE_PERCENTAGE;
-        Double realAmount = (amountInCents - fee.intValue()) / 100.0;
-        Integer newBalance = balance - (amountInCents + fee.intValue());
+        int amountInCents = amount * 100;
+        double fee = amountInCents * ApplicationConfiguration.WITHDRAWAL_FEE_PERCENTAGE;
+        Double realAmount = (amountInCents - (int) fee) / 100.0;
+        Integer newBalance = balance - (amountInCents + (int) fee);
 
 
         Boolean success = bank.withdrawal(realAmount, withdrawalInformation);
