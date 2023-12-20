@@ -44,6 +44,7 @@ public class UserService {
     }
 
     public Boolean alreadyExist(String email) {
+        log.debug("Check if user already exist : {}", email);
         return userRepository.existsByEmail(email);
     }
 }
