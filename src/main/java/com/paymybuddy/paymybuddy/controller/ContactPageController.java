@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.security.Principal;
 import java.util.Objects;
 
+/**
+ * Controller for handling contact page related requests.
+ */
 @Controller
 @Slf4j
 public class ContactPageController {
@@ -25,18 +28,40 @@ public class ContactPageController {
     private final MessageService messageService;
     private final UserService userService;
 
+    /**
+     * Constructor for ContactPageController.
+     *
+     * @param messageService the service for handling messages
+     * @param userService the service for handling user related operations
+     */
     public ContactPageController(MessageService messageService, UserService userService) {
         this.messageService = messageService;
         this.userService = userService;
     }
 
-
+    /**
+     * Handles GET requests to the contact page.
+     *
+     * @param model the model to be used in the view
+     * @param contactForm the form data from the user
+     * @param principal the currently authenticated user
+     * @return the name of the view to be rendered
+     */
     @GetMapping("/contact")
     public String showContactPage(Model model, ContactFormDto contactForm, Principal principal) {
         render(model, contactForm, principal);
         return "contact";
     }
 
+    /**
+     * Handles POST requests to the contact page.
+     *
+     * @param contactForm the form data from the user
+     * @param result the result of the form validation
+     * @param principal the currently authenticated user
+     * @param model the model to be used in the view
+     * @return the name of the view to be rendered
+     */
     @PostMapping("/contact")
     public String addMessage(@Valid @ModelAttribute("contactForm") ContactFormDto contactForm,
                              BindingResult result,
@@ -76,6 +101,13 @@ public class ContactPageController {
         return "redirect:/" + ACTIVE_PAGE + "?success";
     }
 
+    /**
+     * Helper method to set up the model for the view.
+     *
+     * @param model the model to be used in the view
+     * @param contactForm the form data from the user
+     * @param principal the currently authenticated user
+     */
     private void render(Model model, ContactFormDto contactForm, Principal principal) {
         if (contactForm == null) contactForm = new ContactFormDto();
 
