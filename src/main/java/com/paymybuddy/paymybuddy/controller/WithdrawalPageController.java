@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
 
+/**
+ * Controller for handling withdrawal related requests.
+ */
 @Controller
 public class WithdrawalPageController {
 
@@ -20,10 +23,23 @@ public class WithdrawalPageController {
 
     private final WithdrawalPageService withdrawalPageService;
 
+    /**
+     * Constructor for the WithdrawalPageController.
+     *
+     * @param withdrawalPageService the service to handle withdrawal related operations
+     */
     public WithdrawalPageController(WithdrawalPageService withdrawalPageService) {
         this.withdrawalPageService = withdrawalPageService;
     }
 
+    /**
+     * Handles GET requests to show the withdrawal page.
+     *
+     * @param model the model to add attributes to for rendering in the view
+     * @param principal the currently authenticated user
+     * @param withdrawalForm the form data for the withdrawal
+     * @return the name of the view to render
+     */
     @GetMapping(value = "/profile/withdrawal")
     public String showWithdrawalPage(Model model, Principal principal, WithdrawalFormDto withdrawalForm) {
         model.addAttribute("activePage", ACTIVE_PAGE);
@@ -34,6 +50,15 @@ public class WithdrawalPageController {
         return "withdrawal";
     }
 
+    /**
+     * Handles POST requests to process a withdrawal.
+     *
+     * @param withdrawalForm the form data for the withdrawal
+     * @param model the model to add attributes to for rendering in the view
+     * @param principal the currently authenticated user
+     * @param result the BindingResult that holds the result of the validation and binding and allows for a Validator to be applied
+     * @return the name of the view to render
+     */
     @PostMapping(value = "/profile/withdrawal")
     public String withdrawalAmount(@ModelAttribute("withdrawalForm") WithdrawalFormDto withdrawalForm,
                                    Model model,
