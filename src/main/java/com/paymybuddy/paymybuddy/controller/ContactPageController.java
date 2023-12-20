@@ -26,7 +26,6 @@ public class ContactPageController {
     private static final String ACTIVE_PAGE = "contact";
 
     private final MessageService messageService;
-    private final UserService userService;
 
     /**
      * Constructor for ContactPageController.
@@ -36,7 +35,6 @@ public class ContactPageController {
      */
     public ContactPageController(MessageService messageService, UserService userService) {
         this.messageService = messageService;
-        this.userService = userService;
     }
 
     /**
