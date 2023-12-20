@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
 
+/**
+ * Controller for handling deposit related requests.
+ */
 @Controller
 public class DepositPageController {
 
@@ -20,10 +23,23 @@ public class DepositPageController {
 
     private final DepositPageService depositPageService;
 
+    /**
+     * Constructor for DepositPageController.
+     *
+     * @param depositPageService the service to handle deposit page related operations
+     */
     public DepositPageController(DepositPageService depositPageService) {
         this.depositPageService = depositPageService;
     }
 
+    /**
+     * Handles GET requests to show the deposit page.
+     *
+     * @param model the model to add attributes to for the view
+     * @param principal the currently authenticated user
+     * @param depositForm the form data for the deposit
+     * @return the name of the view to render
+     */
     @GetMapping("/profile/deposit")
     public String showDepositPage(Model model, Principal principal, DepositFormDto depositForm) {
         model.addAttribute("activePage", ACTIVE_PAGE);
@@ -35,6 +51,15 @@ public class DepositPageController {
         return "deposit";
     }
 
+    /**
+     * Handles POST requests to deposit an amount.
+     *
+     * @param depositForm the form data for the deposit
+     * @param model the model to add attributes to for the view
+     * @param principal the currently authenticated user
+     * @param result the binding result which can contain form validation errors
+     * @return the name of the view to render or a redirect view if the deposit was successful
+     */
     @PostMapping("/profile/deposit")
     public String depositAmount(
             @ModelAttribute("depositForm") DepositFormDto depositForm,
