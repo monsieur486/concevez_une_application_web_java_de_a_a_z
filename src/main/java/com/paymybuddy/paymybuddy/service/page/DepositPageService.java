@@ -25,7 +25,7 @@ public class DepositPageService {
      * Constructor for the DepositPageService.
      *
      * @param userService the user service
-     * @param bank the bank service
+     * @param bank        the bank service
      */
     public DepositPageService(UserService userService, Bank bank) {
         this.userService = userService;
@@ -35,8 +35,8 @@ public class DepositPageService {
     /**
      * Method to deposit money into a user's account.
      *
-     * @param email the email of the user
-     * @param amount the amount to be deposited
+     * @param email              the email of the user
+     * @param amount             the amount to be deposited
      * @param depositInformation the deposit information
      * @return true if the deposit was successful, false otherwise
      */
@@ -61,7 +61,7 @@ public class DepositPageService {
     /**
      * Method to render the deposit page.
      *
-     * @param principal the principal user
+     * @param principal   the principal user
      * @param depositForm the deposit form
      * @return the deposit page DTO
      */

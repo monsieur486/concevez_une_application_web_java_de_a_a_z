@@ -18,7 +18,7 @@ public class MessageService {
     /**
      * Constructor for MessageService.
      *
-     * @param messageRepository  the message repository
+     * @param messageRepository the message repository
      */
     public MessageService(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
@@ -27,7 +27,7 @@ public class MessageService {
     /**
      * Saves a new message to the repository.
      *
-     * @param contactFormDto  the contact form data transfer object
+     * @param contactFormDto the contact form data transfer object
      */
     public void saveMessage(ContactFormDto contactFormDto) {
         Message message = new Message();

@@ -62,11 +62,11 @@ public class TransferPageController {
      * Handles POST requests to add a transaction.
      *
      * @param transactionForm the form for the transaction
-     * @param result the binding result to hold validation errors
-     * @param model the model to hold attributes for the view
-     * @param principal the currently authenticated user
-     * @param page the page number for pagination
-     * @param size the size of the page for pagination
+     * @param result          the binding result to hold validation errors
+     * @param model           the model to hold attributes for the view
+     * @param principal       the currently authenticated user
+     * @param page            the page number for pagination
+     * @param size            the size of the page for pagination
      * @return the name of the view to render
      */
     @PostMapping(value = "/transfer")
@@ -112,6 +112,6 @@ public class TransferPageController {
         model.addAttribute("pageNumbers", transferPageDto.getPageNumbers());
         model.addAttribute("currentPage", transferPageDto.getCurrentPage());
         model.addAttribute("totalPage", transferPageDto.getTotalPage());
-        }
+    }
 }
 

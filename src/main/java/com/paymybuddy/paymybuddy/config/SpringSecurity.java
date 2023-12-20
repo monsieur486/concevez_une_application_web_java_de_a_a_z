@@ -33,7 +33,7 @@ public class SpringSecurity {
      * Constructor for SpringSecurity class.
      *
      * @param userDetailsService the service to fetch user details
-     * @param dataSource the data source for the application
+     * @param dataSource         the data source for the application
      */
     public SpringSecurity(UserDetailsService userDetailsService, DataSource dataSource) {
         this.userDetailsService = userDetailsService;

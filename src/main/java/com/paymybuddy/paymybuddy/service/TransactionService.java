@@ -23,7 +23,7 @@ public class TransactionService {
     /**
      * Constructor for TransactionService.
      *
-     * @param transactionRepository  the transaction repository
+     * @param transactionRepository the transaction repository
      */
     public TransactionService(TransactionRepository transactionRepository) {
         this.transactionRepository = transactionRepository;
@@ -32,9 +32,9 @@ public class TransactionService {
     /**
      * Adds a new transaction to the repository.
      *
-     * @param connection   the connection object
-     * @param amount       the amount of the transaction
-     * @param description  the description of the transaction
+     * @param connection  the connection object
+     * @param amount      the amount of the transaction
+     * @param description the description of the transaction
      */
     public void addTransaction(Connection connection, Integer amount, String description) {
         Transaction transaction = new Transaction();
@@ -48,10 +48,10 @@ public class TransactionService {
     /**
      * Retrieves a page of transactions for a user.
      *
-     * @param user  the user object
-     * @param page  the page number
-     * @param size  the page size
-     * @return      a page of transactions
+     * @param user the user object
+     * @param page the page number
+     * @param size the page size
+     * @return a page of transactions
      */
     public Page<Transaction> getTransactions(User user, int page, int size) {
         return transactionRepository.findAllByConnection_UserOrderByIdDesc(user, PageRequest.of(page, size));
@@ -60,7 +60,7 @@ public class TransactionService {
     /**
      * Deletes transactions by connection id.
      *
-     * @param id  the id of the connection
+     * @param id the id of the connection
      */
     public void deleteTransactionsByConnectionId(Long id) {
         transactionRepository.deleteTransactionsByConnection_Id(id);

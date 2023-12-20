@@ -35,8 +35,8 @@ public class WithdrawalPageController {
     /**
      * Handles GET requests to show the withdrawal page.
      *
-     * @param model the model to add attributes to for rendering in the view
-     * @param principal the currently authenticated user
+     * @param model          the model to add attributes to for rendering in the view
+     * @param principal      the currently authenticated user
      * @param withdrawalForm the form data for the withdrawal
      * @return the name of the view to render
      */
@@ -54,9 +54,9 @@ public class WithdrawalPageController {
      * Handles POST requests to process a withdrawal.
      *
      * @param withdrawalForm the form data for the withdrawal
-     * @param model the model to add attributes to for rendering in the view
-     * @param principal the currently authenticated user
-     * @param result the BindingResult that holds the result of the validation and binding and allows for a Validator to be applied
+     * @param model          the model to add attributes to for rendering in the view
+     * @param principal      the currently authenticated user
+     * @param result         the BindingResult that holds the result of the validation and binding and allows for a Validator to be applied
      * @return the name of the view to render
      */
     @PostMapping(value = "/profile/withdrawal")

@@ -31,7 +31,7 @@ public class ContactPageController {
      * Constructor for ContactPageController.
      *
      * @param messageService the service for handling messages
-     * @param userService the service for handling user related operations
+     * @param userService    the service for handling user related operations
      */
     public ContactPageController(MessageService messageService, UserService userService) {
         this.messageService = messageService;
@@ -40,9 +40,9 @@ public class ContactPageController {
     /**
      * Handles GET requests to the contact page.
      *
-     * @param model the model to be used in the view
+     * @param model       the model to be used in the view
      * @param contactForm the form data from the user
-     * @param principal the currently authenticated user
+     * @param principal   the currently authenticated user
      * @return the name of the view to be rendered
      */
     @GetMapping("/contact")
@@ -55,9 +55,9 @@ public class ContactPageController {
      * Handles POST requests to the contact page.
      *
      * @param contactForm the form data from the user
-     * @param result the result of the form validation
-     * @param principal the currently authenticated user
-     * @param model the model to be used in the view
+     * @param result      the result of the form validation
+     * @param principal   the currently authenticated user
+     * @param model       the model to be used in the view
      * @return the name of the view to be rendered
      */
     @PostMapping("/contact")
@@ -102,9 +102,9 @@ public class ContactPageController {
     /**
      * Helper method to set up the model for the view.
      *
-     * @param model the model to be used in the view
+     * @param model       the model to be used in the view
      * @param contactForm the form data from the user
-     * @param principal the currently authenticated user
+     * @param principal   the currently authenticated user
      */
     private void render(Model model, ContactFormDto contactForm, Principal principal) {
         if (contactForm == null) contactForm = new ContactFormDto();

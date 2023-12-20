@@ -23,7 +23,6 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
 @SpringBootTest
 class TransferPageControllerTest {
@@ -58,7 +57,7 @@ class TransferPageControllerTest {
                 .andExpect(view().name("transfer"))
                 .andExpect(model().attributeExists("activePage"))
                 .andExpect(model().attribute("activePage", "transfer"))
-                ;
+        ;
     }
 
     @Test
@@ -141,7 +140,7 @@ class TransferPageControllerTest {
         User userTest = new User(1L, "demo@test.fr", "password", 10000);
         when(userService.findByEmail(any(String.class))).thenReturn(userTest);
 
-        int minimumAmount = ApplicationConfiguration.MINIMUM_AMOUNT_TRANSACTION -1;
+        int minimumAmount = ApplicationConfiguration.MINIMUM_AMOUNT_TRANSACTION - 1;
 
         this.mockMvc
                 .perform(post("/transfer")
@@ -167,7 +166,7 @@ class TransferPageControllerTest {
         User userTest = new User(1L, "demo@test.fr", "password", 10000);
         when(userService.findByEmail(any(String.class))).thenReturn(userTest);
 
-        int maximumAmount = ApplicationConfiguration.MAXIMUM_AMOUNT_TRANSACTION +1;
+        int maximumAmount = ApplicationConfiguration.MAXIMUM_AMOUNT_TRANSACTION + 1;
 
         this.mockMvc
                 .perform(post("/transfer")

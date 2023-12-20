@@ -28,7 +28,7 @@ public interface ConnectionRepository extends CrudRepository<Connection, Long> {
     /**
      * Finds all connections of a user, orders them by nickname, and returns a page of results.
      *
-     * @param user the user whose connections are to be found
+     * @param user     the user whose connections are to be found
      * @param pageable the pagination information
      * @return a page of connections ordered by nickname
      */
@@ -52,7 +52,7 @@ public interface ConnectionRepository extends CrudRepository<Connection, Long> {
     /**
      * Finds a connection between a user and a friend.
      *
-     * @param user the user
+     * @param user   the user
      * @param friend the friend
      * @return the connection between the user and the friend
      */

@@ -24,7 +24,7 @@ public class ConnectionService {
     /**
      * Constructor for ConnectionService.
      *
-     * @param connectionRepository  the connection repository
+     * @param connectionRepository the connection repository
      */
     public ConnectionService(ConnectionRepository connectionRepository) {
         this.connectionRepository = connectionRepository;
@@ -33,9 +33,9 @@ public class ConnectionService {
     /**
      * Adds a new connection to the repository.
      *
-     * @param user      the user object
-     * @param friend    the friend object
-     * @param nickname  the nickname of the friend
+     * @param user     the user object
+     * @param friend   the friend object
+     * @param nickname the nickname of the friend
      */
     public void addConnection(User user, User friend, String nickname) {
         Connection connection = new Connection();
@@ -48,8 +48,8 @@ public class ConnectionService {
     /**
      * Retrieves a list of connections for a user.
      *
-     * @param user  the user object
-     * @return      a list of connections
+     * @param user the user object
+     * @return a list of connections
      */
     public List<Connection> getConnections(User user) {
         return connectionRepository.findByUserOrderByNickname(user);
@@ -58,10 +58,10 @@ public class ConnectionService {
     /**
      * Retrieves a page of connections for a user.
      *
-     * @param user  the user object
-     * @param page  the page number
-     * @param size  the page size
-     * @return      a page of connections
+     * @param user the user object
+     * @param page the page number
+     * @param size the page size
+     * @return a page of connections
      */
     public Page<Connection> getPageConnections(User user, int page, int size) {
         return connectionRepository.findByUserOrderByNickname(user, PageRequest.of(page, size));
@@ -70,7 +70,7 @@ public class ConnectionService {
     /**
      * Deletes a connection by id.
      *
-     * @param id  the id of the connection
+     * @param id the id of the connection
      */
     public void deleteConnection(Long id) {
         connectionRepository.deleteById(id);
@@ -81,7 +81,7 @@ public class ConnectionService {
      *
      * @param user   the user object
      * @param friend the friend object
-     * @return       true if the connection exists, false otherwise
+     * @return true if the connection exists, false otherwise
      */
     public Boolean existConnectionByFriend(User user, User friend) {
         return connectionRepository.findByUserAndUserConnected(user, friend) != null;
@@ -90,8 +90,8 @@ public class ConnectionService {
     /**
      * Finds a connection by id.
      *
-     * @param connectionId  the id of the connection
-     * @return              the connection object
+     * @param connectionId the id of the connection
+     * @return the connection object
      */
     public Connection findById(Long connectionId) {
         return connectionRepository.findById(connectionId).orElse(null);

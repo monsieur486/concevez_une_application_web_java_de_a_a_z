@@ -35,10 +35,10 @@ public class ProfilePageController {
     /**
      * Handles GET requests to show the profile page.
      *
-     * @param model the model to add attributes to for rendering in the view
-     * @param principal the currently authenticated user
-     * @param page the page number for pagination
-     * @param size the size of the page for pagination
+     * @param model             the model to add attributes to for rendering in the view
+     * @param principal         the currently authenticated user
+     * @param page              the page number for pagination
+     * @param size              the size of the page for pagination
      * @param connectionFormDto the form data for adding a new connection
      * @return the name of the view to render
      */
@@ -58,11 +58,11 @@ public class ProfilePageController {
      * Handles POST requests to add a new connection.
      *
      * @param connectionForm the form data for the new connection
-     * @param principal the currently authenticated user
-     * @param result the binding result to hold validation errors
-     * @param page the page number for pagination
-     * @param size the size of the page for pagination
-     * @param model the model to add attributes to for rendering in the view
+     * @param principal      the currently authenticated user
+     * @param result         the binding result to hold validation errors
+     * @param page           the page number for pagination
+     * @param size           the size of the page for pagination
+     * @param model          the model to add attributes to for rendering in the view
      * @return the name of the view to render
      */
     @PostMapping("/profile")
@@ -101,10 +101,10 @@ public class ProfilePageController {
      * Renders the profile page by adding necessary attributes to the model.
      *
      * @param connectionForm the form data for the new connection
-     * @param principal the currently authenticated user
-     * @param page the page number for pagination
-     * @param size the size of the page for pagination
-     * @param model the model to add attributes to for rendering in the view
+     * @param principal      the currently authenticated user
+     * @param page           the page number for pagination
+     * @param size           the size of the page for pagination
+     * @param model          the model to add attributes to for rendering in the view
      */
     private void render(@ModelAttribute("connectionForm") ConnectionFormDto connectionForm, Principal principal, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size, Model model) {
         ProfilePageDto profilePageDto = profilePageService.renderProfilePage(principal.getName(), page, size, connectionForm);

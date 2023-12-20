@@ -23,6 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     /**
      * Constructor for CustomUserDetailsService.
+     *
      * @param userRepository UserRepository instance
      */
     public CustomUserDetailsService(UserRepository userRepository) {
@@ -32,6 +33,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     /**
      * Overridden method from UserDetailsService interface.
      * This method is used to find user by email and load user-specific data.
+     *
      * @param email User's email
      * @return UserDetails instance
      * @throws UsernameNotFoundException if user not found
@@ -51,6 +53,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     /**
      * This method is used to map user roles to authorities.
+     *
      * @return Collection of GrantedAuthority
      */
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities() {

@@ -35,8 +35,8 @@ public class DepositPageController {
     /**
      * Handles GET requests to show the deposit page.
      *
-     * @param model the model to add attributes to for the view
-     * @param principal the currently authenticated user
+     * @param model       the model to add attributes to for the view
+     * @param principal   the currently authenticated user
      * @param depositForm the form data for the deposit
      * @return the name of the view to render
      */
@@ -55,9 +55,9 @@ public class DepositPageController {
      * Handles POST requests to deposit an amount.
      *
      * @param depositForm the form data for the deposit
-     * @param model the model to add attributes to for the view
-     * @param principal the currently authenticated user
-     * @param result the binding result which can contain form validation errors
+     * @param model       the model to add attributes to for the view
+     * @param principal   the currently authenticated user
+     * @param result      the binding result which can contain form validation errors
      * @return the name of the view to render or a redirect view if the deposit was successful
      */
     @PostMapping("/profile/deposit")

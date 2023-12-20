@@ -20,8 +20,8 @@ public class UserService {
     /**
      * Constructor for UserService.
      *
-     * @param userRepository   the user repository
-     * @param passwordEncoder  the password encoder
+     * @param userRepository  the user repository
+     * @param passwordEncoder the password encoder
      */
     public UserService(UserRepository userRepository,
                        PasswordEncoder passwordEncoder) {
@@ -32,7 +32,7 @@ public class UserService {
     /**
      * Saves a new user to the repository.
      *
-     * @param userFormDto  the user form data transfer object
+     * @param userFormDto the user form data transfer object
      */
     public void saveUser(UserFormDto userFormDto) {
         User user = new User();
@@ -49,8 +49,8 @@ public class UserService {
     /**
      * Finds a user by email.
      *
-     * @param email  the email of the user
-     * @return       the user object
+     * @param email the email of the user
+     * @return the user object
      */
     public User findByEmail(String email) {
         log.debug("Find user by email : {}", email);
@@ -60,8 +60,8 @@ public class UserService {
     /**
      * Sets the balance for a user.
      *
-     * @param user     the user object
-     * @param balance  the balance to be set
+     * @param user    the user object
+     * @param balance the balance to be set
      */
     public void setBalance(User user, Integer balance) {
         user.setBalance(balance);
@@ -72,8 +72,8 @@ public class UserService {
     /**
      * Checks if a user already exists by email.
      *
-     * @param email  the email of the user
-     * @return       true if the user exists, false otherwise
+     * @param email the email of the user
+     * @return true if the user exists, false otherwise
      */
     public Boolean alreadyExist(String email) {
         log.debug("Check if user already exist : {}", email);

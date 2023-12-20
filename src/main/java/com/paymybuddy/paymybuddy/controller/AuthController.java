@@ -51,9 +51,9 @@ public class AuthController {
      * Handles POST requests to the /register/save endpoint.
      * Validates the user input and saves the new user if the input is valid.
      *
-     * @param user The user form data.
+     * @param user   The user form data.
      * @param result The binding result containing validation errors.
-     * @param model The model to add attributes to.
+     * @param model  The model to add attributes to.
      * @return The name of the view to render.
      */
     @PostMapping("/register/save")

@@ -16,6 +16,7 @@ public interface TransactionRepository extends CrudRepository<Transaction, Long>
 
     /**
      * Find a transaction by its id.
+     *
      * @param id The id of the transaction.
      * @return The transaction with the given id.
      */
@@ -23,7 +24,8 @@ public interface TransactionRepository extends CrudRepository<Transaction, Long>
 
     /**
      * Find all transactions associated with a given user, ordered by id in descending order.
-     * @param user The user whose transactions are to be found.
+     *
+     * @param user     The user whose transactions are to be found.
      * @param pageable The pagination information.
      * @return A page of transactions associated with the given user.
      */
@@ -31,12 +33,14 @@ public interface TransactionRepository extends CrudRepository<Transaction, Long>
 
     /**
      * Delete a transaction by its connection id.
+     *
      * @param id The connection id of the transaction to be deleted.
      */
     void deleteByConnectionId(Long id);
 
     /**
      * Delete transactions by their connection id.
+     *
      * @param id The connection id of the transactions to be deleted.
      */
     void deleteTransactionsByConnection_Id(Long id);
