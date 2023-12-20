@@ -43,10 +43,10 @@ public class DepositPageService {
     public Boolean depositMoney(String email, Integer amount, DepositInformation depositInformation) {
         User userDB = userService.findByEmail(email);
         Integer balance = userDB.getBalance();
-        Integer amountInCents = amount * 100;
-        Double fee = amountInCents * ApplicationConfiguration.DEPOSIT_FEE_PERCENTAGE;
-        Integer newBalance = balance + (amountInCents - fee.intValue());
-        Double realAmount = (amountInCents - fee.intValue()) / 100.0;
+        int amountInCents = amount * 100;
+        double fee = amountInCents * ApplicationConfiguration.DEPOSIT_FEE_PERCENTAGE;
+        Integer newBalance = balance + (amountInCents - (int) fee);
+        Double realAmount = (amountInCents - (int) fee) / 100.0;
 
         Boolean success = bank.deposit(realAmount, depositInformation);
 
