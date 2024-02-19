@@ -98,10 +98,17 @@ public class TransferPageService {
     public Boolean balanceIsSufficient(String userEmail, Integer amount) {
         User userDB = userService.findByEmail(userEmail);
         Integer balance = userDB.getBalance();
-        Integer amountInCents = amount * 100;
-        Double fee = amountInCents * ApplicationConfiguration.TRANSACTION_FEE_PERCENTAGE;
-        Integer totalTransaction = amountInCents + fee.intValue();
+        int amountInCents = amount * 100;
+        double fee = amountInCents * ApplicationConfiguration.TRANSACTION_FEE_PERCENTAGE;
+        Integer totalTransaction = amountInCents + (int) fee;
 
         return balance >= totalTransaction;
+    }
+
+    public Integer maximumAmount(String userEmail) {
+        User userDB = userService.findByEmail(userEmail);
+        Integer balance = userDB.getBalance();
+        double fee = balance * ApplicationConfiguration.TRANSACTION_FEE_PERCENTAGE;
+        return (int) (balance - fee);
     }
 }

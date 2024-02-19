@@ -1,5 +1,6 @@
 package com.paymybuddy.paymybuddy.controller;
 
+import com.paymybuddy.paymybuddy.config.ApplicationConfiguration;
 import com.paymybuddy.paymybuddy.dto.form.TransactionFormDto;
 import com.paymybuddy.paymybuddy.dto.page.TransferPageDto;
 import com.paymybuddy.paymybuddy.service.page.TransferPageService;
@@ -80,8 +81,40 @@ public class TransferPageController {
 
         render(model, principal, transactionForm, page, size);
 
-        // Validation for transaction form fields
-        // ...
+        if (transactionForm.getConnectionId()==0) {
+            result.rejectValue(
+                    "connectionId",
+                    "",
+                    "The connection must be selected");
+        }
+
+        if (transactionForm.getAmount() <= 0) {
+            result.rejectValue(
+                    "amount",
+                    "",
+                    "The amount must be greater than 0");
+        }
+
+        if (transactionForm.getDescription() == null || transactionForm.getDescription().isEmpty()) {
+            result.rejectValue(
+                    "description",
+                    "",
+                    "The description cannot be empty");
+        }
+
+        if(!transferPageService.balanceIsSufficient(principal.getName(), transactionForm.getAmount())){
+            double maxSolde = transferPageService.maximumAmount(principal.getName())/100.0;
+            result.rejectValue(
+                    "amount",
+                    "",
+                    "The amount with fee ("
+                            + maxSolde
+                            + " "
+                            + ApplicationConfiguration.CURRENCY
+                            +" ) must be less than or equal to your solde"
+            );
+        }
+
 
         if (result.hasErrors()) {
             return ACTIVE_PAGE;
