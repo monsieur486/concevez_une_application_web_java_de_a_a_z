@@ -81,7 +81,7 @@ public class TransferPageController {
 
         render(model, principal, transactionForm, page, size);
 
-        if (transactionForm.getConnectionId()==0) {
+        if (transactionForm.getConnectionId() == 0) {
             result.rejectValue(
                     "connectionId",
                     "",
@@ -102,8 +102,8 @@ public class TransferPageController {
                     "The description cannot be empty");
         }
 
-        if(!transferPageService.balanceIsSufficient(principal.getName(), transactionForm.getAmount())){
-            int maxSolde = (int) Math.floor(transferPageService.maximumAmount(principal.getName())/100.0);
+        if (!transferPageService.balanceIsSufficient(principal.getName(), transactionForm.getAmount())) {
+            int maxSolde = (int) Math.floor(transferPageService.maximumAmount(principal.getName()) / 100.0);
             result.rejectValue(
                     "amount",
                     "",

@@ -97,7 +97,7 @@ public class ProfilePageController {
                     "You can't add yourself");
         }
 
-        if (profilePageService.alreadyExistsByFriend (principal.getName(), connectionForm.getEmail())) {
+        if (profilePageService.alreadyExistsByFriend(principal.getName(), connectionForm.getEmail())) {
             result.rejectValue(
                     "email",
                     "",
@@ -112,7 +112,7 @@ public class ProfilePageController {
         }
 
 
-        if (connectionForm.getNickname().isEmpty()){
+        if (connectionForm.getNickname().isEmpty()) {
             result.rejectValue(
                     "nickname",
                     "",
