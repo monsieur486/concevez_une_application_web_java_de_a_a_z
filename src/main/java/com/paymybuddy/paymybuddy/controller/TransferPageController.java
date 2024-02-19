@@ -103,15 +103,14 @@ public class TransferPageController {
         }
 
         if(!transferPageService.balanceIsSufficient(principal.getName(), transactionForm.getAmount())){
-            double maxSolde = transferPageService.maximumAmount(principal.getName())/100.0;
+            int maxSolde = (int) Math.floor(transferPageService.maximumAmount(principal.getName())/100.0);
             result.rejectValue(
                     "amount",
                     "",
-                    "The amount with fee ("
+                    "The maximum amount without tax must be less than "
                             + maxSolde
                             + " "
                             + ApplicationConfiguration.CURRENCY
-                            +" ) must be less than or equal to your solde"
             );
         }
 
