@@ -120,7 +120,7 @@ class TransferPageControllerTest {
                 .perform(post("/transfer")
                         .principal(mockPrincipal)
                         .param("connectionId", "2")
-                        .param("amount", "")
+                        .param("amount", "0")
                         .param("description", "description")
                         .with(csrf())
                 )
@@ -140,21 +140,19 @@ class TransferPageControllerTest {
         User userTest = new User(1L, "demo@test.fr", "password", 10000);
         when(userService.findByEmail(any(String.class))).thenReturn(userTest);
 
-        int minimumAmount = ApplicationConfiguration.MINIMUM_AMOUNT_TRANSACTION - 1;
-
         this.mockMvc
                 .perform(post("/transfer")
                         .principal(mockPrincipal)
                         .param("connectionId", "2")
-                        .param("amount", Integer.toString(minimumAmount))
+                        .param("amount", "1")
                         .param("description", "description")
                         .with(csrf())
                 )
-                .andExpect(model()
-                        .attributeHasFieldErrors("transactionForm", "amount")
-                )
-                .andExpect(status().isOk())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(model().hasNoErrors())
+                .andExpect(redirectedUrl("/transfer?success"))
         ;
+
     }
 
     @Test
