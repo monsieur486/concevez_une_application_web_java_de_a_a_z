@@ -42,7 +42,7 @@ public class ProfilePageService {
         User userConnectedDB = userService.findByEmail(connectionFormDto.getEmail());
         String nickname = connectionFormDto.getNickname();
         connectionService.addConnection(userDB, userConnectedDB, nickname);
-        log.info("Connection added: {}", connectionFormDto);
+        log.info("Connection added: {} for user: {}", connectionFormDto, userDB.getEmail());
     }
 
     public Boolean friendAlreadyExists(String user) {

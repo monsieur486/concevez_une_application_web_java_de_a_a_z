@@ -35,6 +35,8 @@ class StringUtilTest {
     @Test
     void isValidEmail() {
         assertTrue(StringUtil.isValidEmail("toto@gmail.fr"));
+        assertTrue(StringUtil.isValidEmail("toto123@gmail.fr"));
+        assertTrue(StringUtil.isValidEmail("123@gmail.fr"));
         assertFalse(StringUtil.isValidEmail("toto"));
         assertFalse(StringUtil.isValidEmail("toto@"));
         assertFalse(StringUtil.isValidEmail("toto@fr"));

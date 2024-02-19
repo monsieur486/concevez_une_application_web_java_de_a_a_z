@@ -3,6 +3,7 @@ package com.paymybuddy.paymybuddy.controller;
 import com.paymybuddy.paymybuddy.dto.form.ConnectionFormDto;
 import com.paymybuddy.paymybuddy.dto.page.ProfilePageDto;
 import com.paymybuddy.paymybuddy.service.page.ProfilePageService;
+import com.paymybuddy.paymybuddy.tools.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,7 +76,49 @@ public class ProfilePageController {
 
         render(connectionForm, principal, page, size, model);
 
-        // Validation for the connection form
+        if (connectionForm.getEmail().isEmpty()) {
+            result.rejectValue(
+                    "email",
+                    "",
+                    "Email mandatory");
+        }
+
+        if (!StringUtil.isValidEmail(connectionForm.getEmail())) {
+            result.rejectValue(
+                    "email",
+                    "",
+                    "Invalid email");
+        }
+
+        if (connectionForm.getEmail().equals(principal.getName())) {
+            result.rejectValue(
+                    "email",
+                    "",
+                    "You can't add yourself");
+        }
+
+        if (profilePageService.alreadyExistsByFriend (principal.getName(), connectionForm.getEmail())) {
+            result.rejectValue(
+                    "email",
+                    "",
+                    "You are already connected with this user");
+        }
+
+        if (!profilePageService.friendAlreadyExists(connectionForm.getEmail())) {
+            result.rejectValue(
+                    "email",
+                    "",
+                    "User not found, friend must be registered to PayMyBuddy");
+        }
+
+
+        if (connectionForm.getNickname().isEmpty()){
+            result.rejectValue(
+                    "nickname",
+                    "",
+                    "Nickname mandatory");
+        }
+
         if (result.hasErrors()) {
             return ACTIVE_PAGE;
         }
