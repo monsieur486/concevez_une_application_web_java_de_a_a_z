@@ -24,14 +24,13 @@ public class WithdrawalPageService {
         this.bank = bank;
     }
 
-    public Boolean withdrawalMoney(String email, Integer amount, WithdrawalInformation withdrawalInformation) {
+    public Boolean withdrawalMoney(String email, Double amount, WithdrawalInformation withdrawalInformation) {
         User userDB = userService.findByEmail(email);
         Integer balance = userDB.getBalance();
-        int amountInCents = amount * 100;
+        int amountInCents = (int) (amount * 100);
         double fee = amountInCents * ApplicationConfiguration.WITHDRAWAL_FEE_PERCENTAGE;
         Double realAmount = (amountInCents - (int) fee) / 100.0;
         Integer newBalance = balance - (amountInCents + (int) fee);
-
 
         Boolean success = bank.withdrawal(realAmount, withdrawalInformation);
 
@@ -58,10 +57,10 @@ public class WithdrawalPageService {
         return withdrawalPageDto;
     }
 
-    public Boolean balanceIsSufficient(String userEmail, Integer amount) {
+    public Boolean balanceIsSufficient(String userEmail, Double amount) {
         User userDB = userService.findByEmail(userEmail);
         Integer balance = userDB.getBalance();
-        Integer amountInCents = amount * 100;
+        Integer amountInCents = (int) (amount * 100);
 
         return balance >= amountInCents;
     }

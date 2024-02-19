@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class WithdrawalFormDto {
-    private Integer amount = 0;
+    private Double amount = 0.0;
 
     public String toJson() {
         final GsonBuilder builder = new GsonBuilder();
