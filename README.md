@@ -16,7 +16,8 @@ This project is a web application that allows users to manage their money transf
 * Make a copy at the project root of the dist.env file renaming it .env and modify the required connection information
 * Run the application with the command `mvn spring-boot:run`
 
-### Diagramme de classes et Model physique de données
+### Diagramme de classes
 ![img01.png](img01.png)
 
+### Model physique de données
 ![img02.png](img02.png)
