@@ -41,7 +41,6 @@
 		<maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
 		<maven-project-info-reports-plugin.version>3.4.5</maven-project-info-reports-plugin.version>
 		<maven-jxr-plugin.version>3.3.0</maven-jxr-plugin.version>
-		<spring-dotenv.version>4.0.0</spring-dotenv.version>
 		<gson.version>2.10.1</gson.version>
 	</properties>
 
